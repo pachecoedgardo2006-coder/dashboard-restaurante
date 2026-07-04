@@ -41,7 +41,7 @@ dashboard-restaurante/
     │   └── main.js                # Orquestador central y Router basado en Hash (#)
     ├── index.html                 # Punto de entrada y contenedor principal de la UI
     └── vite.config.js             # Configuración del empaquetador Vite
-
+```
 ---
 
 ## ⚙️ Módulos del Core Operativo
