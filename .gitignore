@@ -1,0 +1,17 @@
+# Dependencias de Node (No se suben, se instalan con npm install)
+node_modules/
+dist/
+.env
+
+# Archivos de compilación de Vite en el frontend
+frontend/dist/
+
+# Base de datos SQLite local (No subir datos operativos ni de prueba del local)
+backend/data/restaurante.db
+
+# Archivos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

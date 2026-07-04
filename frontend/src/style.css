@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Estilos de utilidad específicos para el estado activo del Sidebar */
+.nav-btn.active {
+    background-color: var(--color-amber-500);
+    color: var(--color-slate-950);
+    font-weight: 600;
+}
+
+.nav-btn.active:hover {
+    background-color: var(--color-amber-400);
+    color: var(--color-slate-950);
+}
