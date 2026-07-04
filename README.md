@@ -1,20 +1,20 @@
 # 🌌 ResiFoods - Dashboard de Administración para Restaurantes
 
-ResiFoods es un panel de control administrativo unificado y de alta eficiencia, diseñado exclusivamente para la gestión operativa interna de restaurantes de comidas rápidas que operan dentro de conjuntos residenciales[cite: 1].
+ResiFoods es un panel de control administrativo unificado y de alta eficiencia, diseñado exclusivamente para la gestión operativa interna de restaurantes de comidas rápidas que operan dentro de conjuntos residenciales.
 
-A diferencia de las aplicaciones comerciales tradicionales, este sistema centraliza el flujo logístico, financiero y de inventario desde una única interfaz de administrador, eliminando la necesidad de infraestructura pública o perfiles de clientes externos[cite: 1].
+A diferencia de las aplicaciones comerciales tradicionales, este sistema centraliza el flujo logístico, financiero y de inventario desde una única interfaz de administrador, eliminando la necesidad de infraestructura pública o perfiles de clientes externos.
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-El proyecto está diseñado bajo una arquitectura de **Monorepo** limpia y desacoplada, priorizando la ligereza, la velocidad de carga y la ausencia de frameworks pesados en el frontend[cite: 1]:
+El proyecto está diseñado bajo una arquitectura de **Monorepo** limpia y desacoplada, priorizando la ligereza, la velocidad de carga y la ausencia de frameworks pesados en el frontend:
 
-* **Frontend:** Vite + JavaScript Vanilla (Manipulación modular estructurada del DOM mediante funciones nativas)[cite: 1].
-* **Estilos:** Tailwind CSS v4 con una estética unificada **"Dark Mystic" / Cyberpunk** (Fondos oscuros en `bg-slate-950`, bordes sutiles en `slate-900` y efectos de transparencia antialiased)[cite: 1].
-* **HTTP Client:** Axios (Configurado mediante una instancia centralizada orientada al prefijo `/api`)[cite: 1].
-* **Backend:** Node.js + Express Framework[cite: 1].
-* **Base de Datos:** SQLite 3 (Persistencia local integrada en un archivo `.db` controlado mediante consultas nativas por promesas, garantizando cero costos de mantenimiento en la nube)[cite: 1].
+* **Frontend:** Vite + JavaScript Vanilla (Manipulación modular estructurada del DOM mediante funciones nativas).
+* **Estilos:** Tailwind CSS v4 con una estética unificada **"Dark Mystic" / Cyberpunk** (Fondos oscuros en `bg-slate-950`, bordes sutiles en `slate-900` y efectos de transparencia antialiased).
+* **HTTP Client:** Axios (Configurado mediante una instancia centralizada orientada al prefijo `/api`).
+* **Backend:** Node.js + Express Framework.
+* **Base de Datos:** SQLite 3 (Persistencia local integrada en un archivo `.db` controlado mediante consultas nativas por promesas, garantizando cero costos de mantenimiento en la nube).
 
 ---
 
@@ -83,10 +83,12 @@ instalar la aplicación en una máquina de producción (Windows) de forma limpia
 REQUISITOS PREVIOS EN LA MÁQUINA DESTINO
 --------------------------------------------------------------------------------
 1. Node.js (Versión LTS estable recomendada: v22 o superior).
+```text
    - Descargar e instalar desde el sitio oficial.
    - Verificar instalación en la terminal (CMD o PowerShell) ejecutando:
      node -v
      npm -v
+```
 2. Un navegador web moderno (Google Chrome o Microsoft Edge recomendado).
 
 
@@ -104,14 +106,17 @@ PASO 2: MODIFICACIONES Y CONFIGURACIONES DE CÓDIGO (PRODUCCIÓN)
 --------------------------------------------------------------------------------
 
 [A] CONFIGURACIÓN DEL HTTP CLIENT (FRONTEND)
+```texT
     - Ubicación: frontend/src/services/api.js
     - Acción: La instancia centralizada de Axios debe apuntar a rutas relativas 
       orientadas al prefijo '/api'. Asegurarse de que no apunte a un 
       'localhost' estático con un puerto harcodeado en desarrollo.
     - Ejemplo:
       const api = axios.create({ baseURL: '/api' });
+```
 
 [B] CONFIGURACIÓN DEL SERVIDOR EXPRESS (BACKEND)
+```text
     - Ubicación: backend/src/app.js
     - Acción: Añadir los middlewares para servir el frontend compilado (Vite Build)
       de manera estática unificada. Colocar este bloque ANTES de definir las 
@@ -129,6 +134,7 @@ PASO 2: MODIFICACIONES Y CONFIGURACIONES DE CÓDIGO (PRODUCCIÓN)
         res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
       });
       --------------------------------------------------------------------------
+```
 
 
 --------------------------------------------------------------------------------
@@ -137,16 +143,19 @@ PASO 3: INSTALACIÓN DE DEPENDENCIAS Y COMPILACIÓN (BUILD)
 Abrir una terminal (CMD o PowerShell) y ejecutar los siguientes comandos:
 
 1. Compilar el Frontend (Optimización de assets, CSS v4 y JS modular):
+```text
    cd C:\ResiFoods\frontend
    npm install
    npm run build
-   
+```
    * Nota: Esto creará la carpeta 'frontend/dist/' con los archivos listos
      para ser servidos de manera eficiente por Express.
 
 2. Instalar dependencias del Backend:
+```text
    cd C:\ResiFoods\backend
    npm install
+```
 
    * Nota: Al ejecutar el servidor por primera vez, el script de configuración 
      'backend/src/config/db.js' creará automáticamente el archivo de la 
