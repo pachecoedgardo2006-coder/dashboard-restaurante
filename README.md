@@ -1,4 +1,3 @@
-```
 # 🌌 ResiFoods - Dashboard de Administración para Restaurantes
 
 ResiFoods es un panel de control administrativo unificado y de alta eficiencia, diseñado exclusivamente para la gestión operativa interna de restaurantes de comidas rápidas que operan dentro de conjuntos residenciales[cite: 1].
@@ -43,8 +42,6 @@ dashboard-restaurante/
     ├── index.html                 # Punto de entrada y contenedor principal de la UI
     └── vite.config.js             # Configuración del empaquetador Vite
 
-```
-
 ---
 
 ## ⚙️ Módulos del Core Operativo
@@ -69,12 +66,6 @@ dashboard-restaurante/
 * **Persistencia Real:** Se prohíbe el uso de almacenamiento volátil del navegador (`localStorage`) para el flujo operativo; todas las operaciones interactúan directamente con la base de datos local a través de bloques `async/await` controlados.
 
 
-
-```
-
-```
-
-```text
 ================================================================================
  MANUAL DE INSTALACIÓN Y DESPLIEGUE LOCAL - RESIFOODS DASHBOARD
 ================================================================================
@@ -206,5 +197,3 @@ financiera, inventario y pedidos reside en un solo archivo:
   jornada hacia un almacenamiento en la nube (Google Drive, OneDrive) o una 
   unidad USB externa para prevenir pérdidas por fallos de hardware.
 ================================================================================
-
-```
