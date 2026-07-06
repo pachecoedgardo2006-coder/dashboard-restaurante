@@ -1,8 +1,9 @@
 // frontend/src/main.js
-import { renderEstadisticas } from './views/estadisticas.js';
-import { renderPedidos } from './views/pedidos.js';
-import { renderInventario } from './views/inventario.js';
-import { renderHistorial } from './views/historial.js';
+// Actualizamos las importaciones para que apunten a la nueva estructura de carpetas
+import { renderEstadisticas } from './views/estadisticas/index.js';
+import { renderPedidos } from './views/pedidos/index.js';
+import { renderInventario } from './views/inventario/index.js';
+import { renderHistorial } from './views/historial/index.js';
 
 // Diccionario que mapea la ruta (hash) con su respectiva función generadora del DOM
 const routes = {

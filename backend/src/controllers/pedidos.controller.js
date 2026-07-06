@@ -109,7 +109,13 @@ export const crearPedido = async (req, res) => {
 export const listarPedidos = async (req, res) => {
     try {
         const db = await conectarDB();
-        const pedidos = await db.all('SELECT * FROM pedidos ORDER BY fecha DESC');
+        
+        // 🛠️ FILTRADO ATÓMICO: Solo traemos las órdenes que están en proceso en la cocina/reparto
+        const pedidos = await db.all(`
+            SELECT * FROM pedidos 
+            WHERE estado IN ('Pendiente', 'En preparación') 
+            ORDER BY fecha DESC
+        `);
         
         for (const pedido of pedidos) {
             pedido.items = await db.all(`
@@ -123,7 +129,7 @@ export const listarPedidos = async (req, res) => {
         await db.close();
         res.json(pedidos);
     } catch (error) {
-        res.status(500).json({ error: 'Error al listar pedidos: ' + error.message });
+        res.status(500).json({ error: 'Error al listar pedidos activos: ' + error.message });
     }
 };
 

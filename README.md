@@ -24,23 +24,66 @@ El proyecto está diseñado bajo una arquitectura de **Monorepo** limpia y desac
 dashboard-restaurante/
 ├── backend/
 │   ├── data/
-│   │   └── restaurante.db         # Base de datos SQLite nativa (Auto-creada)
+│   │   └── restaurante.db                 # Base de datos SQLite nativa (Auto-creada)
 │   ├── src/
 │   │   ├── config/
-│   │   │   └── db.js              # Conexión e inicialización del esquema SQL
-│   │   ├── controllers/           # Controladores de pedidos, inventario y métricas
-│   │   ├── routes/                # Enrutador de la API REST (/api)
-│   │   └── app.js                 # Express App y middlewares de producción
-│   └── index.js                   # Punto de entrada del servidor backend
-└── frontend/
-    ├── src/
-    │   ├── assets/                # Multimedia y recursos visuales
-    │   ├── components/            # Componentes modulares reutilizables del DOM
-    │   ├── services/              # Instancia base de Axios
-    │   ├── views/                 # Vistas dinámicas de la SPA (Single Page Application)
-    │   └── main.js                # Orquestador central y Router basado en Hash (#)
-    ├── index.html                 # Punto de entrada y contenedor principal de la UI
-    └── vite.config.js             # Configuración del empaquetador Vite
+│   │   │   └── db.js                      # Inicialización del esquema SQL y conexión por promesas
+│   │   ├── controllers/                   # Lógica de negocio y consultas CRUD atómicas
+│   │   │   ├── estadisticas.controller.js 
+│   │   │   ├── historial.controller.js    
+│   │   │   ├── inventario.controller.js   
+│   │   │   └── pedidos.controller.js      # Control operativo exclusivo de pedidos en cocina/reparto
+│   │   ├── routes/                        # Definición de endpoints de la API REST
+│   │   │   ├── estadisticas.routes.js     
+│   │   │   ├── historial.routes.js       
+│   │   │   ├── inventario.routes.js       
+│   │   │   └── pedidos.routes.js          
+│   │   └── app.js                         # Configuración de Express, middlewares globales y montaje de rutas
+│   ├── index.js                           # Punto de entrada principal y arranque del servidor HTTP
+│   ├── package.json                       # Dependencias del backend y scripts de inicio
+│   └── package-lock.json                  
+│ 
+├── frontend/
+│   ├── public/                            # Recursos estáticos globales accesibles directamente
+│   │   ├── favicon.svg                    
+│   │   └── icons.svg                      
+│   ├── src/
+│   │   ├── components/                    # Componentes modulares reutilizables del DOM
+│   │   │   ├── UI/
+│   │   │   │   └── Loader.js             
+│   │   │   ├── FormPedido.js              
+│   │   │   ├── Sidebar.js                 
+│   │   │   ├── TarjetaPedido.js           
+│   │   │   └── Toast.js      
+│   │   ├── services/                      # Configuraciones de clientes de red externos
+│   │   │   └── api.js                     # Instancia centralizada de Axios configurada con rutas relativas
+│   │   ├── views/                         # Secciones estructuradas bajo un esquema de carpetas modulares
+│   │   │   ├── estadisticas/
+│   │   │   │   ├── index.js               # Orquestador de la vista de analítica
+│   │   │   │   └── modules/
+│   │   │   │       ├── CardMetrica.js
+│   │   │   │       ├── GraficoProgreso.js
+│   │   │   │       └── SeccionAnalitica.js
+│   │   │   ├── historial/
+│   │   │   │   ├── index.js               # Orquestador del Historial (Maneja el nuevo formulario de fechas)
+│   │   │   │   └── modules/
+│   │   │   │       └── FilaHistorial.js
+│   │   │   ├── inventario/
+│   │   │   │   ├── index.js               # Orquestador de Inventario (Coordina tabla y formulario externo)
+│   │   │   │   └── modules/
+│   │   │   │       ├── FilaProducto.js
+│   │   │   │       └── FormInventario.js  
+│   │   │   └── pedidos/
+│   │   │       └── index.js               # Orquestador operativo de la cocina en vivo
+│   │   ├── main.js                        # Orquestador global de la SPA y router basado en Hash (#)
+│   │   └── style.css                      # Estilos globales y configuraciones de Tailwind CSS v4 (Dark Mystic)
+│   ├── index.html                         # Contenedor principal único para el montaje de la interfaz
+│   ├── package.json                       # Dependencias del frontend (Vite, Axios, Tailwind)
+│   └── vite.config.js                     
+│
+├── package.json                           # Configuración de scripts globales para la gestión del Monorepo
+├── package-lock.json                      
+└── README.md                              # Documentación técnica e ingeniería del sistema
 
 ```
 
