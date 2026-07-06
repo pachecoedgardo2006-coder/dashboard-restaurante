@@ -4,14 +4,14 @@ export function Sidebar(onViewChange) {
 
     aside.innerHTML = `
         <div>
-            <!-- Header / Logo -->
-            <div class="p-6 border-b border-slate-950 flex items-center gap-3">
-                <div class="h-9 w-9 bg-linear-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-orange-950/40 text-lg">
-                    🍔
+            <!-- Header / Logo Extraído del Anuncio -->
+            <div class="p-6 border-b border-slate-900/50 flex items-center gap-3">
+                <div class="h-9 w-9 bg-linear-to-br from-red-600 to-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-red-950/40 text-lg">
+                    🔥
                 </div>
                 <div>
-                    <h1 class="font-black text-base tracking-wide text-white leading-tight">ResiFoods</h1>
-                    <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Panel de Control</p>
+                    <h1 class="font-black text-base tracking-tighter text-white uppercase leading-tight">House Grill 6</h1>
+                    <p class="text-[10px] text-red-500 font-bold uppercase tracking-widest">Panel de Control</p>
                 </div>
             </div>
 
@@ -33,18 +33,18 @@ export function Sidebar(onViewChange) {
         </div>
 
         <!-- Footer Sidebar -->
-        <div class="p-4 border-t border-slate-900 text-[10px] font-mono text-slate-600 text-center uppercase tracking-widest bg-slate-950/50">
-            Modo Interno • Residencia
+        <div class="p-4 border-t border-slate-900 text-[10px] font-mono text-red-600/50 text-center uppercase tracking-widest bg-slate-950/50">
+            Modo Interno • Parrilla
         </div>
     </aside>
     `;
 
-    // Manejador de eventos para SPA y estado activo visual
+    // Manejador de eventos para SPA y estado activo visual cambiado a la nueva paleta
     const botones = aside.querySelectorAll('.nav-btn');
     botones.forEach(btn => {
         btn.addEventListener('click', () => {
-            botones.forEach(b => b.classList.remove('bg-slate-900', 'text-white', 'border-l-2', 'border-amber-500', 'pl-3'));
-            btn.classList.add('bg-slate-900', 'text-white', 'border-l-2', 'border-amber-500', 'pl-3');
+            botones.forEach(b => b.classList.remove('bg-slate-900', 'text-white', 'border-l-2', 'border-red-600', 'pl-3'));
+            btn.classList.add('bg-slate-900', 'text-white', 'border-l-2', 'border-red-600', 'pl-3');
             
             const view = btn.getAttribute('data-view');
             onViewChange(view);

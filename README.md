@@ -1,6 +1,6 @@
-# 🌌 ResiFoods - Dashboard de Administración para Restaurantes
+# 🪵 House Grill 6 - Dashboard de Administración para Restaurantes
 
-ResiFoods es un panel de control administrativo unificado y de alta eficiencia, diseñado exclusivamente para la gestión operativa interna de restaurantes de comidas rápidas que operan dentro de conjuntos residenciales.
+House Grill 6 es un panel de control administrativo unificado y de alta eficiencia, diseñado exclusivamente para la gestión operativa interna de restaurantes de comidas rápidas que operan dentro de conjuntos residenciales.
 
 A diferencia de las aplicaciones comerciales tradicionales, este sistema centraliza el flujo logístico, financiero y de inventario desde una única interfaz de administrador, eliminando la necesidad de infraestructura pública o perfiles de clientes externos.
 
@@ -8,14 +8,13 @@ A diferencia de las aplicaciones comerciales tradicionales, este sistema central
 
 ## 🛠️ Stack Tecnológico
 
-El proyecto está diseñado bajo una arquitectura de **Monorepo** limpia y desacoplada, priorizando la ligereza, la velocidad de carga y la ausencia de frameworks pesados en el frontend:
+El proyecto está diseñado bajo una arquitectura de ****Monorepo**** limpia y desacoplada, priorizando la ligereza, la velocidad de carga y la ausencia de frameworks pesados en el frontend:
 
-* **Frontend:** Vite + JavaScript Vanilla (Manipulación modular estructurada del DOM mediante funciones nativas).
-* **Estilos:** Tailwind CSS v4 con una estética unificada **"Dark Mystic" / Cyberpunk** (Fondos oscuros en `bg-slate-950`, bordes sutiles en `slate-900` y efectos de transparencia antialiased).
-* **HTTP Client:** Axios (Configurado mediante una instancia centralizada orientada al prefijo `/api`).
-* **Backend:** Node.js + Express Framework.
-* **Base de Datos:** SQLite 3 (Persistencia local integrada en un archivo `.db` controlado mediante consultas nativas por promesas, garantizando cero costos de mantenimiento en la nube).
-
+-   ****Frontend:**** Vite + JavaScript Vanilla (Manipulación modular estructurada del DOM mediante funciones nativas).
+-   ****Estilos:**** Tailwind CSS v4 con una estética unificada ****Urbana, Agresiva e Industrial de Parrilla al Carbón**** (Fondo oscuro extremo en `bg-slate-950`, bordes y separadores duros en `slate-900` / `border-slate-900`, acentuación cromática en Rojo Fuego `#e61919` y Mostaza Caliente `#ffb700`, tipografías pesadas y masivas `font-black` / `font-extrabold`, tracking cerrado/bloqueado `letter-spacing: -0.05em`, texto estrictamente en `uppercase` y acabados rectos `rounded-none`).
+-   ****HTTP Client:**** Axios (Configurado mediante una instancia centralizada orientada al prefijo `/api`).
+-   ****Backend:**** Node.js + Express Framework.
+-   ****Base de Datos:**** SQLite 3 (Persistencia local integrada en un archivo `.db` controlado mediante consultas nativas por promesas, garantizando cero costos de mantenimiento en la nube).
 ---
 
 ## 📂 Arquitectura del Sistema
@@ -35,7 +34,7 @@ dashboard-restaurante/
 │   │   │   └── pedidos.controller.js      # Control operativo exclusivo de pedidos en cocina/reparto
 │   │   ├── routes/                        # Definición de endpoints de la API REST
 │   │   │   ├── estadisticas.routes.js     
-│   │   │   ├── historial.routes.js       
+│   │   │   ├── historial.routes.js        
 │   │   │   ├── inventario.routes.js       
 │   │   │   └── pedidos.routes.js          
 │   │   └── app.js                         # Configuración de Express, middlewares globales y montaje de rutas
@@ -91,9 +90,9 @@ dashboard-restaurante/
 
 ## ⚙️ Módulos del Core Operativo
 
-1. **Estadísticas Avanzadas:** Panel analítico estructurado en 3 zonas de control (Gestión Financiera, Control Operativo/Logística, y Mapeo de Demanda) asistido por componentes gráficos basados en barras de progreso CSS nativas para el monitoreo de stock crítico y platos más vendidos.
-2. **Gestión de Pedidos Residenciales:** Flujo modular interactivo para capturar de manera obligatoria la ubicación exacta del residente (Torre, Bloque, Apartamento, Teléfono), así como el cálculo logístico automatizado del vuelto o cambio requerido para el domiciliario según el método de pago.
-3. **Auditoría de Inventario:** Tabla dinámica con transacciones SQL atómicas. Reduce automáticamente los insumos con cada compra confirmada y devuelve el stock al inventario de forma inmediata y automática en caso de cancelaciones para evitar la corrupción de datos.
+1.  **Estadísticas Avanzadas:** Panel analítico estructurado en 3 zonas de control (Gestión Financiera, Control Operativo/Logística, y Mapeo de Demanda) asistido por componentes gráficos basados en barras de progreso CSS nativas para el monitoreo de stock crítico y platos más vendidos.
+2.  **Gestión de Pedidos Residenciales:** Flujo modular interactivo para capturar de manera obligatoria la ubicación exacta del residente (Torre, Bloque, Apartamento, Teléfono), así como el cálculo logístico automatizado del vuelto o cambio requerido para el domiciliario según el método de pago.
+3.  **Auditoría de Inventario:** Tabla dinámica con transacciones SQL atómicas. Reduce automáticamente los insumos con cada compra confirmada y devuelve el stock al inventario de forma inmediata y automática en caso de cancelaciones para evitar la corrupción de datos.
 
 ---
 
@@ -123,9 +122,6 @@ node -v
 npm -v
 
 ```
-
-
-
 
 2. Un **navegador web** moderno (Google Chrome o Microsoft Edge recomendado).
 

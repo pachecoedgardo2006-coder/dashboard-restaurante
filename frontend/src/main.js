@@ -1,5 +1,3 @@
-// frontend/src/main.js
-// Actualizamos las importaciones para que apunten a la nueva estructura de carpetas
 import { renderEstadisticas } from './views/estadisticas/index.js';
 import { renderPedidos } from './views/pedidos/index.js';
 import { renderInventario } from './views/inventario/index.js';
@@ -29,8 +27,8 @@ async function router() {
     try {
         // Renderizamos un esqueleto de carga temporal rápido y limpio en el DOM principal
         appContainer.innerHTML = `
-            <div class="flex items-center justify-center min-h-screen bg-slate-900 text-slate-400 text-xs tracking-wider animate-pulse uppercase">
-                Cargando interfaz operativa...
+            <div class="flex items-center justify-center min-h-[50vh] bg-slate-950 text-red-500 text-xs font-black tracking-widest animate-pulse uppercase">
+                🔥 Calentando los motores de la parrilla...
             </div>
         `;
 
@@ -47,8 +45,8 @@ async function router() {
     } catch (error) {
         console.error(`Error crítico cargando la vista [${currentHash}]:`, error);
         appContainer.innerHTML = `
-            <div class="p-6 bg-red-950/20 border border-red-900 rounded-xl text-red-400 text-center text-sm max-w-xl mx-auto mt-12">
-                ⚠️ Error de enlace o conectividad con el servidor backend. Revisa tu consola.
+            <div class="p-6 bg-red-950/20 border border-red-900 rounded-xl text-red-500 text-center font-bold text-xs uppercase tracking-wider max-w-xl mx-auto mt-12">
+                ⚠️ Error de enlace o conectividad con el servidor de comanda.
             </div>
         `;
     }
@@ -64,13 +62,12 @@ function actualizarSidebar(activeHash) {
     
     document.querySelectorAll('#sidebar-nav .nav-btn').forEach(btn => {
         if (btn.getAttribute('data-view') === viewName) {
-            // Clases activas de Tailwind v4 para resaltar la pestaña actual
-            btn.classList.add('bg-slate-800', 'text-white', 'font-semibold', 'border-l-4', 'border-emerald-500');
-            btn.classList.remove('text-slate-400', 'hover:bg-slate-900');
+            // Sincronización cambiada al color Rojo Fuego de control para la pestaña activa
+            btn.classList.add('bg-slate-900', 'text-white', 'font-bold', 'border-l-4', 'border-red-600');
+            btn.classList.remove('text-slate-400', 'hover:bg-slate-900/60');
         } else {
-            // Restaurar estado inactivo limpio
-            btn.classList.remove('bg-slate-800', 'text-white', 'font-semibold', 'border-l-4', 'border-emerald-500');
-            btn.classList.add('text-slate-400', 'hover:bg-slate-900');
+            btn.classList.remove('bg-slate-900', 'text-white', 'font-bold', 'border-l-4', 'border-red-600');
+            btn.classList.add('text-slate-400', 'hover:bg-slate-900/60');
         }
     });
 }

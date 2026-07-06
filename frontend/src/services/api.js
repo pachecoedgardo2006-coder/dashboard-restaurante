@@ -10,7 +10,7 @@ const api = axios.create({
     }
 });
 
-// Manejo global de errores (opcional pero muy útil para desarrollo)
+// Manejo global de errores
 api.interceptors.response.use(
     (response) => response.data, // Retorna directamente la data para limpiar los componentes
     (error) => {

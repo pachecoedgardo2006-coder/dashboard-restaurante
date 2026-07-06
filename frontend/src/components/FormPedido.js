@@ -1,10 +1,9 @@
-import { showToast } from './Toast.js'; // Importamos la mini pestaña flotante
+import { showToast } from './Toast.js';
 
 export function FormPedido({ productosDisponibles, onGuardarPedido }) {
     const form = document.createElement('form');
     form.id = 'form-pedido';
     form.className = 'space-y-4';
-    // Desactiva las sugerencias globales del historial en este formulario
     form.setAttribute('autocomplete', 'off'); 
 
     let productosSeleccionados = [];
@@ -12,79 +11,80 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
     function render() {
         form.innerHTML = `
             <!-- Datos del Residente -->
-            <div class="space-y-3 bg-slate-900/50 p-4 rounded-xl border border-slate-800/60">
-                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Datos de Entrega</p>
+            <div class="space-y-3 bg-slate-900/40 p-4 rounded-xl border border-slate-900">
+                <p class="text-xs font-black text-red-500 uppercase tracking-widest">Datos de Entrega</p>
                 <div>
-                    <label class="block text-xs font-medium text-slate-300 mb-1">Nombre del Residente *</label>
-                    <input type="text" id="cliente_nombre" required autocomplete="off" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition uppercase">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Nombre del Residente *</label>
+                    <input type="text" id="cliente_nombre" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition uppercase">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-medium text-slate-300 mb-1">Torre / Bloque *</label>
-                        <input type="text" id="torre_bloque" required autocomplete="off" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition uppercase">
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Torre / Bloque *</label>
+                        <input type="text" id="torre_bloque" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition uppercase">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-300 mb-1">Apartamento *</label>
-                        <input type="text" id="apartamento" required autocomplete="off" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition uppercase">
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Apartamento *</label>
+                        <input type="text" id="apartamento" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition uppercase">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-slate-300 mb-1">Teléfono de Contacto *</label>
-                    <input type="tel" id="telefono" required autocomplete="off" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Teléfono de Contacto *</label>
+                    <input type="tel" id="telefono" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition">
                 </div>
             </div>
 
             <!-- Selector de Productos -->
-            <div class="space-y-3 bg-slate-900/50 p-4 rounded-xl border border-slate-800/60">
-                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Selección de Productos</p>
+            <div class="space-y-3 bg-slate-900/40 p-4 rounded-xl border border-slate-900">
+                <p class="text-xs font-black text-red-500 uppercase tracking-widest">Selección de Combos</p>
                 <div class="flex gap-2">
-                    <select id="select-producto" class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none">
-                        <option value="">-- Seleccionar Plato/Insumo --</option>
+                    <select id="select-producto" class="flex-1 bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600">
+                        <option value="">-- Seleccionar Combo/Plato --</option>
                         ${productosDisponibles.map(p => `
-                            <option value="${p.id}" ${p.stock <= 0 ? 'disabled class="text-red-500"' : ''}>
+                            <option value="${p.id}" ${p.stock <= 0 ? 'disabled class="text-red-600 font-bold"' : ''}>
                                 ${p.nombre} ($${p.precio}) - Stock: ${p.stock}
                             </option>
                         `).join('')}
                     </select>
-                    <button type="button" id="btn-agregar-prod" class="bg-slate-800 hover:bg-emerald-600 border border-slate-700 hover:border-emerald-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition-all flex items-center justify-center shrink-0">
+                    <button type="button" id="btn-agregar-prod" class="bg-slate-900 hover:bg-red-600 border border-slate-800 hover:border-red-500 text-white font-black px-4 py-2 rounded-lg text-sm transition-all flex items-center justify-center shrink-0">
                         ＋
                     </button>
                 </div>
                 <div id="lista-items" class="space-y-2 max-h-40 overflow-y-auto custom-scrollbar"></div>
-                <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-sm">
-                    <span class="font-bold text-slate-300">Total Pedido:</span>
-                    <span class="text-xl font-black text-emerald-400" id="label-total">$0.00</span>
+                <div class="flex justify-between items-center pt-2 border-t border-slate-900 text-sm">
+                    <span class="font-black text-slate-300 uppercase tracking-wider">Total Comanda:</span>
+                    <span class="text-xl font-black text-amber-400" id="label-total">$0.00</span>
                 </div>
             </div>
 
             <!-- Logística de Pago -->
-            <div class="space-y-3 bg-slate-900/50 p-4 rounded-xl border border-slate-800/60">
-                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Método de Pago y Logística</p>
+            <div class="space-y-3 bg-slate-900/40 p-4 rounded-xl border border-slate-900">
+                <p class="text-xs font-black text-red-500 uppercase tracking-widest">Método de Pago y Logística</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-medium text-slate-300 mb-1">Tipo de Pago *</label>
-                        <select id="tipo_pago" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none">
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Tipo de Pago *</label>
+                        <select id="tipo_pago" required class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600">
                             <option value="Efectivo">Efectivo</option>
                             <option value="Transferencia">Transferencia</option>
                         </select>
                     </div>
                     <div id="wrapper-paga-con">
-                        <label class="block text-xs font-medium text-slate-300 mb-1">¿Con cuánto paga? *</label>
-                        <input type="number" id="paga_con" min="0" step="any" value="0" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none">
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">¿Con cuánto paga? *</label>
+                        <input type="number" id="paga_con" min="0" step="any" value="0" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600">
                     </div>
                 </div>
-                <div id="wrapper-cambio" class="flex justify-between items-center p-2 bg-slate-950/60 rounded-lg border border-slate-800 text-xs">
-                    <span class="text-slate-400">Vuelto/Cambio para Domiciliario:</span>
-                    <span class="font-bold text-amber-400 text-sm" id="label-cambio">$0.00</span>
+                <div id="wrapper-cambio" class="flex justify-between items-center p-2 bg-slate-950/60 rounded-lg border border-slate-900 text-xs">
+                    <span class="text-slate-400">Vuelto para Domiciliario:</span>
+                    <span class="font-bold text-amber-400 text-sm font-mono" id="label-cambio">$0.00</span>
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-slate-300 mb-1">Observaciones / Notas internas</label>
-                    <textarea id="observaciones" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none resize-none"></textarea>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Observaciones / Notas internas</label>
+                    <textarea id="observaciones" rows="2" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 resize-none"></textarea>
                 </div>
             </div>
 
-            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-emerald-950/20 active:scale-[0.98] transition-all text-sm uppercase tracking-wider cursor-pointer">
-                Guardar y Despachar Pedido
+            <!-- Botón adaptado a la forma y color del botón "¡ORDENAR!" del anuncio -->
+            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-950/10 active:scale-[0.98] transition-all text-sm uppercase tracking-wider cursor-pointer">
+                Despachar a la Parrilla
             </button>
         `;
 
@@ -111,7 +111,6 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
                 if (existente.cantidad < prodOriginal.stock) {
                     existente.cantidad++;
                 } else {
-                    // Reemplazo del alert nativo
                     showToast(`No puedes superar el stock disponible (${prodOriginal.stock} unidades)`, 'error');
                 }
             } else {
@@ -142,7 +141,6 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             if (productosSeleccionados.length === 0) {
-                // Reemplazo del alert nativo
                 showToast('Debes agregar al menos un producto.', 'error');
                 return;
             }
@@ -178,15 +176,15 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
         productosSeleccionados.forEach((item, index) => {
             total += item.precio * item.cantidad;
             const div = document.createElement('div');
-            div.className = 'flex justify-between items-center bg-slate-950 p-2 rounded-lg border border-slate-800 text-xs';
+            div.className = 'flex justify-between items-center bg-slate-950 p-2 rounded-lg border border-slate-900 text-xs';
             div.innerHTML = `
                 <div class="min-w-0 flex-1 pr-2">
-                    <span class="font-medium text-white block truncate">${item.nombre}</span>
-                    <span class="text-slate-500 block">Subtotal: $${(item.precio * item.cantidad).toFixed(2)}</span>
+                    <span class="font-bold text-white block truncate uppercase tracking-tight">${item.nombre}</span>
+                    <span class="text-red-500 font-medium block">Subtotal: $${(item.precio * item.cantidad).toFixed(2)}</span>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
-                    <span class="text-slate-400 font-mono bg-slate-900 px-1.5 py-0.5 rounded">x${item.cantidad}</span>
-                    <button type="button" class="text-red-400 hover:text-red-300 font-bold px-1 transition-colors cursor-pointer" data-index="${index}">✕</button>
+                    <span class="text-amber-400 font-mono font-bold bg-slate-900 px-1.5 py-0.5 rounded">x${item.cantidad}</span>
+                    <button type="button" class="text-slate-500 hover:text-red-500 font-bold px-1 transition-colors cursor-pointer" data-index="${index}">✕</button>
                 </div>
             `;
             div.querySelector('button').addEventListener('click', () => {

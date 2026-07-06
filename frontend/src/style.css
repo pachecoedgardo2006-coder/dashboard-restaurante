@@ -1,13 +1,25 @@
 @import "tailwindcss";
+@theme {
+  /* Registramos los acentos agresivos de la parrillera */
+  --color-rojo-fuego: #e61919;
+  --color-mostaza-caliente: #ffb700;
+}
 
-/* Estilos de utilidad específicos para el estado activo del Sidebar */
+/* Forzamos el reset urbano: textos uppercase y tracking cerrado para encabezados pesados */
+.font-black {
+  letter-spacing: -0.05em; /* Tracking cerrado */
+}
+
+/* Sincronización estricta del Sidebar activo (Urbano y Agresivo) */
 .nav-btn.active {
-    background-color: var(--color-amber-500);
-    color: var(--color-slate-950);
-    font-weight: 600;
+    background-color: var(--color-rojo-fuego);
+    color: var(--color-white);
+    font-weight: 900;
+    text-transform: uppercase;
+    border-left: 4px solid var(--color-mostaza-caliente);
+    box-shadow: 0 0 15px rgba(230, 25, 25, 0.2);
 }
 
 .nav-btn.active:hover {
-    background-color: var(--color-amber-400);
-    color: var(--color-slate-950);
+    background-color: #cc1414;
 }
