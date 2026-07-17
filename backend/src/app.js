@@ -9,7 +9,7 @@ import historialRoutes from './routes/historial.routes.js';
 
 const app = express();
 
-// Middlewares globales
+// Middlewares globales (mejora jandy)
 app.use(cors());
 app.use(express.json());
 
@@ -19,7 +19,7 @@ app.use('/api/pedidos', pedidosRoutes);
 app.use('/api/historial', historialRoutes);
 app.use('/api/estadisticas', estadisticasRoutes);
 
-// Manejo global de rutas no encontradas
+// Manejo global de rutas no encontradas (mejora majo)
 app.use((req, res) => {
     res.status(404).json({ error: 'Endpoint no encontrado' });
 });
