@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="app.tituloPagina">House Grill 6 - Panel de Control Interno</title>
     <!-- El archivo CSS de Tailwind se procesará mediante Vite -->
+     <link rel="icon" type="image/png" href="/isotipo.png">
     <link rel="stylesheet" href="/src/style.css">
     <style>
         /* Scrollbar personalizado estético para conservar la inmersión de House Grill */
@@ -26,51 +27,52 @@
 </head>
 <body class="h-full bg-slate-50 text-slate-900 antialiased flex overflow-hidden">
 
-    <!-- SIDEBAR FIJO CON ESTÉTICA HOUSE GRILL 6 -->
-    <aside class="w-64 bg-slate-950 text-slate-400 flex flex-col justify-between border-r border-slate-900 shrink-0">
-        <div>
-            <!-- Header / Logo Extraído del Anuncio -->
-            <div class="p-6 border-b border-slate-900/60 flex items-center gap-3">
-                <div class="h-9 w-9 bg-linear-to-br from-red-600 to-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-red-950/50 text-lg">
-                    🔥
+    <!-- SIDEBAR FIJO CON ESTÉTICA HOUSE GRILL 6 (estilo comanda de cocina) -->
+        <aside class="w-64 shrink-0 flex flex-col justify-between bg-linear-to-b from-[#090909] via-[#121212] to-[#1A1A1A] text-slate-300 border-r border-white/5 shadow-[8px_0_30px_rgba(0,0,0,0.45)]">
+            <div>
+                <div class="pt-6 pb-5 px-6 flex flex-col items-center text-center">
+                    <div class="relative h-32 w-32">
+                        <div class="absolute inset-0 rounded-full bg-linear-to-br from-orange-500/35 via-red-500/30 to-transparent blur-3xl"></div>
+                        <img src="/logo-house-grill.png" alt="House Grill 6" class="relative h-32 w-32 object-contain drop-shadow-[0_0_28px_rgba(239,68,68,.35)] transition duration-500 hover:scale-105" />
+                    </div>
+                    <h1 class="mt-3 text-white text-base font-black uppercase tracking-wide">Panel · Comanda</h1>
                 </div>
-                <div>
-                    <h1 class="font-black text-sm tracking-tighter text-white uppercase leading-tight" data-i18n="app.nombre">House Grill 6</h1>
-                    <p class="text-[10px] text-red-500 font-bold uppercase tracking-widest" data-i18n="app.subtitulo">Panel de Control</p>
+                <div class="mx-6 border-t border-white/5"></div>
+                <nav class="px-4 py-5 space-y-2 font-medium" id="sidebar-nav">
+                    <button data-view="estadisticas" class="nav-btn group relative overflow-hidden flex items-center w-full gap-4 rounded-xl px-4 py-3 text-left transition-all duration-300 text-slate-400 hover:bg-slate-900/60 hover:translate-x-1 hover:text-white">
+                        <span class="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-red-500 opacity-0 group-hover:opacity-100 transition"></span>
+                        <span class="text-xl transition-transform duration-300 group-hover:scale-110">📊</span>
+                        <span class="text-sm tracking-wide">Estadísticas</span>
+                    </button>
+                    <button data-view="pedidos" class="nav-btn group relative overflow-hidden flex items-center w-full gap-4 rounded-xl px-4 py-3 text-left transition-all duration-300 text-slate-400 hover:bg-slate-900/60 hover:translate-x-1 hover:text-white">
+                        <span class="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-red-500 opacity-0 group-hover:opacity-100 transition"></span>
+                        <span class="text-xl transition-transform duration-300 group-hover:scale-110">🍔</span>
+                        <span class="text-sm tracking-wide">Pedidos</span>
+                    </button>
+                    <button data-view="historial" class="nav-btn group relative overflow-hidden flex items-center w-full gap-4 rounded-xl px-4 py-3 text-left transition-all duration-300 text-slate-400 hover:bg-slate-900/60 hover:translate-x-1 hover:text-white">
+                        <span class="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-red-500 opacity-0 group-hover:opacity-100 transition"></span>
+                        <span class="text-xl transition-transform duration-300 group-hover:scale-110">🧾</span>
+                        <span class="text-sm tracking-wide">Historial</span>
+                    </button>
+                    <button data-view="inventario" class="nav-btn group relative overflow-hidden flex items-center w-full gap-4 rounded-xl px-4 py-3 text-left transition-all duration-300 text-slate-400 hover:bg-slate-900/60 hover:translate-x-1 hover:text-white">
+                        <span class="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-red-500 opacity-0 group-hover:opacity-100 transition"></span>
+                        <span class="text-xl transition-transform duration-300 group-hover:scale-110">📦</span>
+                        <span class="text-sm tracking-wide">Inventario</span>
+                    </button>
+                </nav>
+            </div>
+            <div class="border-t border-white/5 bg-black/20 px-5 py-4">
+                <div class="flex items-center justify-center gap-2 text-xs text-slate-400">
+                    <span class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="uppercase tracking-[0.25em]">Grill Station Online</span>
                 </div>
+                <div id="lang-switcher" class="flex gap-1 bg-slate-900/60 border border-slate-900 rounded-lg p-1">
+                    <button data-lang="es" class="lang-btn flex-1 text-[10px] font-black uppercase tracking-widest py-1.5 rounded-md transition-colors cursor-pointer">ES</button>
+                    <button data-lang="en" class="lang-btn flex-1 text-[10px] font-black uppercase tracking-widest py-1.5 rounded-md transition-colors cursor-pointer">EN</button>
+                </div>
+                <p class="mt-2 text-center text-[10px] text-slate-600 tracking-widest uppercase">House Grill 6 • Modo Parrilla</p>
             </div>
-
-            <!-- Navegación Conectada con tu Router hashchange -->
-            <nav class="p-4 space-y-1.5" id="sidebar-nav">
-                <button data-view="estadisticas" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-900/60 hover:text-white cursor-pointer group">
-                    <span class="text-base transition-transform group-hover:scale-110">📊</span> 
-                    <span data-i18n="menu.estadisticas">Estadísticas</span>
-                </button>
-                <button data-view="pedidos" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-900/60 hover:text-white cursor-pointer group">
-                    <span class="text-base transition-transform group-hover:scale-110">📝</span> 
-                    <span data-i18n="menu.pedidos">Pedidos</span>
-                </button>
-                <button data-view="historial" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-900/60 hover:text-white cursor-pointer group">
-                    <span class="text-base transition-transform group-hover:scale-110">⏳</span> 
-                    <span data-i18n="menu.historial">Historial</span>
-                </button>
-                <button data-view="inventario" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-900/60 hover:text-white cursor-pointer group">
-                    <span class="text-base transition-transform group-hover:scale-110">📦</span> 
-                    <span data-i18n="menu.inventario">Inventario</span>
-                </button>
-            </nav>
-        </div>
-
-        <!-- Footer Sidebar -->
-        <div class="p-4 border-t border-slate-900 bg-slate-950/40 space-y-3">
-            <!-- Selector de idioma -->
-            <div id="lang-switcher" class="flex gap-1 bg-slate-900/60 border border-slate-900 rounded-lg p-1">
-                <button data-lang="es" class="lang-btn flex-1 text-[10px] font-black uppercase tracking-widest py-1.5 rounded-md transition-colors cursor-pointer">ES</button>
-                <button data-lang="en" class="lang-btn flex-1 text-[10px] font-black uppercase tracking-widest py-1.5 rounded-md transition-colors cursor-pointer">EN</button>
-            </div>
-            <p class="text-[10px] font-mono text-red-600/60 text-center uppercase tracking-widest" data-i18n="app.footer">Modo Interno • Parrilla</p>
-        </div>
-    </aside>
+        </aside>
 
     <!-- CONTENEDOR PRINCIPAL DINÁMICO (Ajustado a bg-slate-50) -->
     <main id="app" class="flex-1 flex flex-col min-w-0 overflow-y-auto bg-slate-50 p-8 custom-scrollbar">

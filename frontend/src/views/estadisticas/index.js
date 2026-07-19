@@ -3,6 +3,7 @@ import { CardMetrica } from './modules/CardMetrica.js';
 import { GraficoProgreso } from './modules/GraficoProgreso.js';
 import { SeccionAnalitica } from './modules/SeccionAnalitica.js';
 import { t } from '../../i18n/i18n.js';
+import { DonutChart } from './modules/DonutChart.js';
 
 export async function renderEstadisticas() {
     const container = document.createElement('div');
@@ -98,7 +99,6 @@ export async function renderEstadisticas() {
                 titulo: t('estadisticas.graficoTorres.titulo'),
                 descripcion: t('estadisticas.graficoTorres.descripcion'),
                 items: (data.ranking_torres || []).map(t2 => ({ nombre: t('estadisticas.graficoTorres.nombreItem', { torre: t2.torre_bloque }), valor: t2.total_pedidos, etiquetaValor: t('estadisticas.graficoTorres.etiquetaValor', { n: t2.total_pedidos }) })),
-                deColor: 'from-amber-600', aColor: 'to-amber-400'
             }));
 
             gridGraficos.appendChild(GraficoProgreso({
