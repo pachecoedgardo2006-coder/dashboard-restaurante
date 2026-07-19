@@ -1,0 +1,193 @@
+{
+  "app": {
+    "nombre": "House Grill 6",
+    "subtitulo": "Control Panel",
+    "footer": "Internal Mode • Grill",
+    "tituloPagina": "House Grill 6 - Internal Control Panel"
+  },
+
+  "menu": {
+    "pedidos": "Orders",
+    "historial": "History",
+    "inventario": "Inventory",
+    "estadisticas": "Statistics"
+  },
+
+  "general": {
+    "guardar": "Save",
+    "cancelar": "Cancel",
+    "editar": "Edit",
+    "eliminar": "Delete",
+    "cargandoVista": "🔥 Firing up the grill...",
+    "errorVista": "⚠️ Connection error with the order server."
+  },
+
+  "estados": {
+    "Pendiente": "Pending",
+    "En preparación": "Preparing",
+    "Entregado": "Delivered",
+    "Cancelado": "Cancelled"
+  },
+
+  "pagos": {
+    "Efectivo": "Cash",
+    "Transferencia": "Transfer"
+  },
+
+  "pedidos": {
+    "titulo": "Order Management",
+    "subtitulo": "Internal order desk and real-time grill monitoring.",
+    "seccionCreacion": "Create order",
+    "seccionMonitoreo": "Live monitoring (kitchen)",
+    "vacio": "Empty grill. No active orders.",
+    "toastInitError": "Error initializing the order panel.",
+    "toastGuardadoExito": "Order sent to the grill successfully!",
+    "toastGuardadoErrorFallback": "Check supplies or network.",
+    "toastEstadoCambiado": "Order #{{id}} moved to [{{estado}}]",
+    "toastEstadoError": "Error updating kitchen status.",
+    "toastConexionError": "Error connecting to the kitchen monitor.",
+
+    "form": {
+      "datosEntrega": "Delivery Details",
+      "nombreResidente": "Resident Name *",
+      "torreBloque": "Tower / Block *",
+      "apartamento": "Apartment *",
+      "telefono": "Contact Phone *",
+      "seleccionCombos": "Combo Selection",
+      "seleccionarCombo": "-- Select Combo/Dish --",
+      "stock": "Stock",
+      "totalComanda": "Order Total:",
+      "metodoPagoLogistica": "Payment Method and Logistics",
+      "tipoPago": "Payment Type *",
+      "pagaCon": "Paying with how much? *",
+      "vueltoDomiciliario": "Change for Delivery Driver:",
+      "observaciones": "Observations / Internal Notes",
+      "despachar": "Send to the Grill",
+      "subtotal": "Subtotal:",
+      "toastStockSuperado": "You can't exceed the available stock ({{stock}} units)",
+      "toastMinProducto": "You must add at least one product."
+    },
+
+    "card": {
+      "metodo": "Method:",
+      "cambio": "Change:",
+      "preparar": "Prepare",
+      "entregar": "Deliver",
+      "cancelar": "CANCEL"
+    }
+  },
+
+  "historial": {
+    "titulo": "Order History",
+    "subtitulo": "Audit of dispatched or cancelled orders on the grill.",
+    "ordenesArchivadas": "Archived Orders",
+    "desde": "From",
+    "hasta": "To",
+    "filtrar": "Filter",
+    "pedidoCount": "{{count}} ORDER{{plural}}",
+    "colPedido": "Order",
+    "colResidente": "Resident",
+    "colUbicacion": "Location",
+    "colProductos": "Products",
+    "colTotal": "Total",
+    "colPago": "Payment",
+    "colEstado": "Status",
+    "cargando": "Loading grill logbook...",
+    "filtrando": "Filtering charcoal records...",
+    "sinRegistros": "No records under this range.",
+    "toastFechasIncompletas": "Select the full date range.",
+    "toastFechaInvalida": "The start date cannot be later than the end date.",
+    "toastErrorCarga": "Error loading history logbook.",
+    "errorCritico": "⚠️ Critical server communication failure.",
+    "torre": "TOWER:",
+    "apt": "APT:",
+    "vuelto": "CHANGE:"
+  },
+
+  "inventario": {
+    "titulo": "Inventory Audit",
+    "subtitulo": "Atomic control of supply and dish units for the restaurant.",
+    "colId": "ID",
+    "colNombre": "Name / Dish",
+    "colDescripcion": "Description",
+    "colPrecio": "Base Price",
+    "colStock": "Available Stock",
+    "colAccion": "Action",
+    "sinProductos": "No products in inventory.",
+    "modificar": "Modify",
+    "bajo": "(Low!)",
+    "unidad": "U.",
+    "toastErrorCargarTabla": "Error loading inventory products.",
+
+    "form": {
+      "agregarTitulo": "📦 Add New Product",
+      "agregarSubtitulo": "Add a new dish to the menu or base ingredient.",
+      "modificarTitulo": "Modify Product",
+      "nombreCompleto": "Full Name *",
+      "descripcionCorta": "Short description",
+      "precio": "Price ($) *",
+      "stockInicial": "Initial Stock *",
+      "guardarCambios": "Save Changes",
+      "toastActualizado": "Product updated successfully",
+      "toastGuardado": "New product saved to catalog",
+      "toastErrorGuardar": "Error saving the product to the database."
+    }
+  },
+
+  "estadisticas": {
+    "titulo": "Performance Metrics",
+    "subtitulo": "Real-time financial, logistics, and residential summary for House Grill 6.",
+    "cargandoAnaliticas": "🔥 Firing up the engines and compiling grill analytics...",
+    "diagnosticosTitulo": "📊 Diagnostics and Ratios",
+    "diagnosticosSubtitulo": "Combo turnover, residential block flows, and consumption recurrence.",
+    "errorRender": "There was a network or database error rendering analytics.",
+    "sinDatos": "No critical data to report.",
+
+    "seccionFinanciera": {
+      "titulo": "💰 Financial and Cash Management",
+      "descripcion": "Cash income audit and payment flow capitalization."
+    },
+    "seccionOperativa": {
+      "titulo": "📦 Operations and Logistics Control",
+      "descripcion": "Order performance metrics and delivery driver base."
+    },
+    "seccionDemanda": {
+      "titulo": "🏢 Demand Mapping and Cancellations",
+      "descripcion": "Analysis of residential complex behavior and operational incidents."
+    },
+
+    "metric": {
+      "ingresosTotales": "Total Income (Cash Register)",
+      "ventasEfectivo": "Cash Sales",
+      "ventasTransferencia": "Transfer Sales",
+      "ticketPromedio": "Average Ticket",
+      "pedidosEfectivos": "Fulfilled Orders",
+      "cambioEnRuta": "Change on Route (Deliveries)",
+      "bloqueMayorDemanda": "Highest Demand Block",
+      "horaPico": "Peak Sales Hour",
+      "ordenesCanceladas": "Cancelled Orders"
+    },
+
+    "graficoCombos": {
+      "titulo": "🍔 Top Combos and Regulars",
+      "descripcion": "Dishes with the highest turnover rate on the grill."
+    },
+    "graficoClientes": {
+      "titulo": "👑 Frequent Customers",
+      "descripcion": "Residents with the highest accumulated order frequency.",
+      "etiquetaValor": "{{n}} orders"
+    },
+    "graficoTorres": {
+      "titulo": "🏢 Delivery Flow by Towers",
+      "descripcion": "Geographic distribution of dispatch volume.",
+      "nombreItem": "Tower / Block {{torre}}",
+      "etiquetaValor": "{{n}} ord."
+    },
+    "graficoStock": {
+      "titulo": "🚨 Critical Inventory Alert",
+      "descripcion": "Kitchen supplies with critical stock (10 units or fewer).",
+      "etiquetaValor": "{{n}} un."
+    },
+    "graficoCombosEtiqueta": "{{n}} u."
+  }
+}
