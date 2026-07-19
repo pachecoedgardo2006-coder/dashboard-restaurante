@@ -101,10 +101,16 @@ export async function renderEstadisticas() {
                 items: (data.ranking_torres || []).map(t => ({ nombre: `Torre ${t.torre_bloque}`, valor: t.total_pedidos }))
             }));
 
+           gridGraficos.appendChild(DonutChart({
+                titulo: '🏢 Distribución por Torres',
+                descripcion: 'Proporción de pedidos por torre/bloque residencial.',
+                items: (data.ranking_torres || []).map(t => ({ nombre: `Torre ${t.torre_bloque}`, valor: t.total_pedidos }))
+            }));
+
             gridGraficos.appendChild(GraficoProgreso({
-                titulo: t('estadisticas.graficoStock.titulo'),
-                descripcion: t('estadisticas.graficoStock.descripcion'),
-                items: (data.stock_critico || []).map(s => ({ nombre: s.nombre, valor: s.stock === 0 ? 0.1 : s.stock, etiquetaValor: t('estadisticas.graficoStock.etiquetaValor', { n: s.stock }) })),
+                titulo: '🚨 Alerta de Inventario Crítico',
+                descripcion: 'Insumos de cocina con stock crítico (igual o inferior a 10 unidades).',
+                items: (data.stock_critico || []).map(s => ({ nombre: s.nombre, valor: s.stock === 0 ? 0.1 : s.stock, etiquetaValor: `${s.stock} und.` })),
                 deColor: 'from-red-700', aColor: 'to-red-500'
             }));
 
