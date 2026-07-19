@@ -95,10 +95,10 @@ export async function renderEstadisticas() {
                 deColor: 'from-slate-500', aColor: 'to-slate-400'
             }));
 
-            gridGraficos.appendChild(GraficoProgreso({
-                titulo: t('estadisticas.graficoTorres.titulo'),
-                descripcion: t('estadisticas.graficoTorres.descripcion'),
-                items: (data.ranking_torres || []).map(t2 => ({ nombre: t('estadisticas.graficoTorres.nombreItem', { torre: t2.torre_bloque }), valor: t2.total_pedidos, etiquetaValor: t('estadisticas.graficoTorres.etiquetaValor', { n: t2.total_pedidos }) })),
+           gridGraficos.appendChild(DonutChart({
+                titulo: '🏢 Distribución por Torres',
+                descripcion: 'Proporción de pedidos por torre/bloque residencial.',
+                items: (data.ranking_torres || []).map(t => ({ nombre: `Torre ${t.torre_bloque}`, valor: t.total_pedidos }))
             }));
 
             gridGraficos.appendChild(GraficoProgreso({
