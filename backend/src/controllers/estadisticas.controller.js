@@ -23,7 +23,7 @@ export const obtenerEstadisticas = async (req, res) => {
             SELECT 
                 COUNT(CASE WHEN estado = 'Entregado' THEN 1 END) as entregados,
                 COUNT(CASE WHEN estado = 'Cancelado' THEN 1 END) as cancelados,
-                SUM(CASE WHEN estado IN ('Pendiente', 'En preparación') AND tipo_pago = 'Efectivo' THEN cambio ELSE 0 END) as cambio_en_ruta
+                SUM(CASE WHEN estado IN ('Pendiente', 'En preparación', 'Listo para entregar') AND tipo_pago = 'Efectivo' THEN cambio ELSE 0 END) as cambio_en_ruta
             FROM pedidos
         `);
 

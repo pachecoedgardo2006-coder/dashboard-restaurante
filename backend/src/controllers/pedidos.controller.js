@@ -112,19 +112,24 @@ export const listarPedidos = async (req, res) => {
         
         // 🛠️ FILTRADO ATÓMICO: Solo traemos las órdenes que están en proceso en la cocina/reparto
         const pedidos = await db.all(`
-            SELECT * FROM pedidos 
-            WHERE estado IN ('Pendiente', 'En preparación') 
-            ORDER BY fecha DESC
-        `);
-        
-        for (const pedido of pedidos) {
-            pedido.items = await db.all(`
-                SELECT dp.cantidad, dp.precio_historico, p.nombre 
-                FROM detalle_pedidos dp
-                JOIN productos p ON dp.producto_id = p.id
-                WHERE dp.pedido_id = ?
-            `, [pedido.id]);
-        }
+    SELECT * FROM pedidos
+    WHERE estado IN (
+        'Pendiente',
+        'En preparación',
+        'Listo para entregar'
+    )
+    ORDER BY fecha DESC
+`);
+
+for (const pedido of pedidos) {
+    pedido.items = await db.all(`
+        SELECT dp.cantidad, dp.precio_historico, p.nombre
+        FROM detalle_pedidos dp
+        JOIN productos p ON dp.producto_id = p.id
+        WHERE dp.pedido_id = ?
+    `, [pedido.id]);
+}
+ 
 
         await db.close();
         res.json(pedidos);
@@ -137,35 +142,78 @@ export const actualizarEstadoPedido = async (req, res) => {
     const { id } = req.params;
     const { estado } = req.body;
 
-    const estadosValidos = ['Pendiente', 'En preparación', 'Entregado', 'Cancelado'];
+    const estadosValidos = [
+        'Pendiente',
+        'En preparación',
+        'Listo para entregar',
+        'Entregado',
+        'Cancelado'
+    ];
+
     if (!estadosValidos.includes(estado)) {
-        return res.status(400).json({ error: 'Estado del pedido no válido.' });
+        return res.status(400).json({
+            error: 'Estado del pedido no válido.'
+        });
     }
 
     try {
         const db = await conectarDB();
-        const pedido = await db.get('SELECT id, estado FROM pedidos WHERE id = ?', [id]);
+
+        const pedido = await db.get(
+            'SELECT id, estado FROM pedidos WHERE id = ?',
+            [id]
+        );
 
         if (!pedido) {
             await db.close();
-            return res.status(404).json({ error: 'Pedido no encontrado' });
+            return res.status(404).json({
+                error: 'Pedido no encontrado'
+            });
         }
 
         if (estado === 'Cancelado' && pedido.estado !== 'Cancelado') {
+
             await db.run('BEGIN TRANSACTION');
-            const items = await db.all('SELECT producto_id, cantidad FROM detalle_pedidos WHERE pedido_id = ?', [id]);
+
+            const items = await db.all(
+                'SELECT producto_id, cantidad FROM detalle_pedidos WHERE pedido_id = ?',
+                [id]
+            );
+
             for (const item of items) {
-                await db.run('UPDATE productos SET stock = stock + ? WHERE id = ?', [item.cantidad, item.producto_id]);
+                await db.run(
+                    'UPDATE productos SET stock = stock + ? WHERE id = ?',
+                    [item.cantidad, item.producto_id]
+                );
             }
-            await db.run('UPDATE pedidos SET estado = ? WHERE id = ?', [estado, id]);
+
+            await db.run(
+                'UPDATE pedidos SET estado = ? WHERE id = ?',
+                [estado, id]
+            );
+
             await db.run('COMMIT');
+
         } else {
-            await db.run('UPDATE pedidos SET estado = ? WHERE id = ?', [estado, id]);
+
+            await db.run(
+                'UPDATE pedidos SET estado = ? WHERE id = ?',
+                [estado, id]
+            );
+
         }
 
         await db.close();
-        res.json({ mensaje: `Estado del pedido #${id} actualizado a '${estado}' con éxito.` });
+
+        res.json({
+            mensaje: `Estado del pedido #${id} actualizado a '${estado}' con éxito.`
+        });
+
     } catch (error) {
-        res.status(500).json({ error: 'Error al actualizar el estado: ' + error.message });
+
+        res.status(500).json({
+            error: 'Error al actualizar el estado: ' + error.message
+        });
+
     }
 };
