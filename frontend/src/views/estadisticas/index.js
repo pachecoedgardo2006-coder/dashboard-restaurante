@@ -2,6 +2,7 @@ import api from '../../services/api.js';
 import { CardMetrica } from './modules/CardMetrica.js';
 import { GraficoProgreso } from './modules/GraficoProgreso.js';
 import { SeccionAnalitica } from './modules/SeccionAnalitica.js';
+import { DonutChart } from './modules/DonutChart.js';
 
 export async function renderEstadisticas() {
     const container = document.createElement('div');
@@ -93,11 +94,10 @@ export async function renderEstadisticas() {
                 deColor: 'from-slate-800', aColor: 'to-slate-600'
             }));
 
-            gridGraficos.appendChild(GraficoProgreso({
-                titulo: '🏢 Flujo de Entregas por Torres',
-                descripcion: 'Distribución geográfica del volumen de despachos.',
-                items: (data.ranking_torres || []).map(t => ({ nombre: `Torre / Bloque ${t.torre_bloque}`, valor: t.total_pedidos, etiquetaValor: `${t.total_pedidos} ped.` })),
-                deColor: 'from-amber-600', aColor: 'to-amber-400'
+           gridGraficos.appendChild(DonutChart({
+                titulo: '🏢 Distribución por Torres',
+                descripcion: 'Proporción de pedidos por torre/bloque residencial.',
+                items: (data.ranking_torres || []).map(t => ({ nombre: `Torre ${t.torre_bloque}`, valor: t.total_pedidos }))
             }));
 
             gridGraficos.appendChild(GraficoProgreso({
