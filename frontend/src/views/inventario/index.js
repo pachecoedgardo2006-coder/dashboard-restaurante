@@ -5,31 +5,29 @@ import { FormInventario } from './modules/FormInventario.js';
 
 export async function renderInventario() {
     const container = document.createElement('div');
-    container.className = 'p-6 space-y-8 bg-slate-950 text-slate-100 min-h-screen px-4';
+    container.className = 'p-8 space-y-6 bg-slate-50 text-slate-900 min-h-screen';
 
     container.innerHTML = `
-        <header class="border-b border-slate-900 pb-4 flex justify-between items-center">
-            <div>
-                <h1 class="text-3xl font-black tracking-tighter text-white uppercase">Auditoría de Inventario</h1>
-                <p class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">Control atómico de unidades de insumos y platos del restaurante.</p>
-            </div>
+        <header class="pb-2">
+            <h1 class="text-3xl font-black tracking-tight text-slate-900">Auditoría de Inventario</h1>
+            <p class="text-xs text-slate-500 mt-1 uppercase tracking-wider font-semibold">Control atómico de unidades de insumos y platos del restaurante.</p>
         </header>
 
-        <div class="grid grid-cols-1 xl:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">
             <!-- Tabla Dinámica (Izquierda) -->
-            <div class="xl:col-span-3 bg-slate-950 border border-slate-900 rounded-none p-6 shadow-2xl overflow-x-auto">
+            <div class="xl:col-span-3 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="border-b border-slate-900 text-xs text-slate-400 font-black uppercase tracking-widest bg-slate-900/40">
-                            <th class="py-3 px-4">ID</th>
-                            <th class="py-3 px-4">Nombre / Plato</th>
+                        <tr class="text-xs text-slate-500 font-bold uppercase tracking-wide bg-slate-50">
+                            <th class="py-3 px-4 rounded-l-lg">ID</th>
+                            <th class="py-3 px-4">Nombre/Plato</th>
                             <th class="py-3 px-4">Descripción</th>
                             <th class="py-3 px-4">Precio Base</th>
                             <th class="py-3 px-4">Stock Disponible</th>
-                            <th class="py-3 px-4 text-right">Acción</th>
+                            <th class="py-3 px-4 text-right rounded-r-lg">Acción</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-productos-body" class="divide-y divide-slate-900 text-sm"></tbody>
+                    <tbody id="tabla-productos-body" class="divide-y divide-slate-100 text-sm"></tbody>
                 </table>
             </div>
 
@@ -75,7 +73,7 @@ export async function renderInventario() {
             if (productos.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="text-center py-8 text-slate-500 text-xs uppercase font-black tracking-widest">No hay productos en inventario.</td>
+                        <td colspan="6" class="text-center py-8 text-slate-400 text-xs uppercase font-bold tracking-widest">No hay productos en inventario.</td>
                     </tr>
                 `;
                 return;
