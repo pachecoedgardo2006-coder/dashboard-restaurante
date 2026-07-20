@@ -55,7 +55,7 @@ async function router() {
     try {
         // Renderizamos un esqueleto de carga temporal rápido y limpio en el DOM principal
         appContainer.innerHTML = `
-            <div class="flex items-center justify-center min-h-[50vh] bg-slate-950 text-red-500 text-xs font-black tracking-widest animate-pulse uppercase">
+            <div class="flex items-center justify-center min-h-[50vh] bg-slate-50 text-red-600 text-xs font-black tracking-widest animate-pulse uppercase">
                 ${t('general.cargandoVista')}
             </div>
         `;
@@ -74,7 +74,7 @@ async function router() {
     } catch (error) {
         console.error(`Error crítico cargando la vista [${currentHash}]:`, error);
         appContainer.innerHTML = `
-            <div class="p-6 bg-red-950/20 border border-red-900 rounded-xl text-red-500 text-center font-bold text-xs uppercase tracking-wider max-w-xl mx-auto mt-12">
+            <div class="p-6 bg-red-50 border border-red-200 rounded-xl text-red-600 text-center font-bold text-xs uppercase tracking-wider max-w-xl mx-auto mt-12">
                 ${t('general.errorVista')}
             </div>
         `;

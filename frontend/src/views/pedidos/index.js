@@ -6,23 +6,23 @@ import { t } from '../../i18n/i18n.js';
 
 export async function renderPedidos() {
     const container = document.createElement('div');
-    container.className = 'space-y-6 w-full max-w-7xl mx-auto px-4';
+    container.className = 'space-y-6 w-full max-w-7xl mx-auto px-4 py-8 bg-slate-50 min-h-screen';
 
     container.innerHTML = `
-        <header class="border-b border-slate-900 pb-4">
-            <h1 class="text-3xl font-black tracking-tighter text-white uppercase">${t('pedidos.titulo')}</h1>
-            <p class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">${t('pedidos.subtitulo')}</p>
+        <header class="border-b border-slate-200 pb-4">
+            <h1 class="text-3xl font-black tracking-tighter text-slate-900 uppercase">${t('pedidos.titulo')}</h1>
+            <p class="text-xs text-slate-500 mt-1 uppercase tracking-wider font-semibold">${t('pedidos.subtitulo')}</p>
         </header> 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <!-- Sección de Despacho (Formulario) -->
-            <section class="lg:col-span-5 bg-slate-950 border border-slate-900 rounded-none p-5 shadow-2xl">
+            <section class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <h2 class="text-sm font-black mb-5 text-rojo-fuego uppercase tracking-widest flex items-center gap-2"> ${t('pedidos.seccionCreacion')}
                 </h2>
                 <div id="form-slot"></div>
             </section>
         <!-- Sección de Monitoreo Activo (Tarjetas) -->
             <section class="lg:col-span-7 space-y-4">
-                <h2 class="text-sm font-black text-mostaza-caliente uppercase tracking-widest flex items-center gap-2"> ${t('pedidos.seccionMonitoreo')}
+                <h2 class="text-sm font-black text-amber-600 uppercase tracking-widest flex items-center gap-2"> ${t('pedidos.seccionMonitoreo')}
                 </h2>
                 <div id="contenedor-tarjetas" class="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-max items-start"></div>
             </section>
@@ -75,7 +75,7 @@ export async function renderPedidos() {
 
             if (activos.length === 0) {
                 tarjetasContainer.innerHTML = `
-                    <div class="col-span-full text-center py-16 border-2 border-dashed border-slate-900 rounded-none text-slate-600 text-xs uppercase font-black tracking-widest">
+                    <div class="col-span-full text-center py-16 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 text-xs uppercase font-black tracking-widest">
                         ${t('pedidos.vacio')}
                     </div>
                 `;

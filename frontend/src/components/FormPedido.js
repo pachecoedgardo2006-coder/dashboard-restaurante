@@ -12,33 +12,33 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
     function render() {
         form.innerHTML = `
             <!-- Datos del Residente -->
-            <div class="space-y-3 bg-slate-900/40 p-4 rounded-xl border border-slate-900">
-                <p class="text-xs font-black text-red-500 uppercase tracking-widest">${t('pedidos.form.datosEntrega')}</p>
+            <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <p class="text-xs font-black text-red-600 uppercase tracking-widest">${t('pedidos.form.datosEntrega')}</p>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.nombreResidente')}</label>
-                    <input type="text" id="cliente_nombre" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition uppercase">
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">${t('pedidos.form.nombreResidente')}</label>
+                    <input type="text" id="cliente_nombre" required autocomplete="off" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-red-500 transition uppercase">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.torreBloque')}</label>
-                        <input type="text" id="torre_bloque" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition uppercase">
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">${t('pedidos.form.torreBloque')}</label>
+                        <input type="text" id="torre_bloque" required autocomplete="off" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-red-500 transition uppercase">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.apartamento')}</label>
-                        <input type="text" id="apartamento" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition uppercase">
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">${t('pedidos.form.apartamento')}</label>
+                        <input type="text" id="apartamento" required autocomplete="off" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-red-500 transition uppercase">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.telefono')}</label>
-                    <input type="tel" id="telefono" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition">
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">${t('pedidos.form.telefono')}</label>
+                    <input type="tel" id="telefono" required autocomplete="off" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-red-500 transition">
                 </div>
             </div>
 
             <!-- Selector de Productos -->
-            <div class="space-y-3 bg-slate-900/40 p-4 rounded-xl border border-slate-900">
-                <p class="text-xs font-black text-red-500 uppercase tracking-widest">${t('pedidos.form.seleccionCombos')}</p>
+            <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <p class="text-xs font-black text-red-600 uppercase tracking-widest">${t('pedidos.form.seleccionCombos')}</p>
                 <div class="flex gap-2">
-                    <select id="select-producto" class="flex-1 bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600">
+                    <select id="select-producto" class="flex-1 bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-red-500">
                         <option value="">${t('pedidos.form.seleccionarCombo')}</option>
                         ${productosDisponibles.map(p => `
                             <option value="${p.id}" ${p.stock <= 0 ? 'disabled class="text-red-600 font-bold"' : ''}>
@@ -46,40 +46,40 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
                             </option>
                         `).join('')}
                     </select>
-                    <button type="button" id="btn-agregar-prod" class="bg-slate-900 hover:bg-red-600 border border-slate-800 hover:border-red-500 text-white font-black px-4 py-2 rounded-lg text-sm transition-all flex items-center justify-center shrink-0">
+                    <button type="button" id="btn-agregar-prod" class="bg-slate-100 hover:bg-red-600 border border-slate-300 hover:border-red-500 text-slate-700 hover:text-white font-black px-4 py-2 rounded-lg text-sm transition-all flex items-center justify-center shrink-0">
                         ＋
                     </button>
                 </div>
                 <div id="lista-items" class="space-y-2 max-h-40 overflow-y-auto custom-scrollbar"></div>
-                <div class="flex justify-between items-center pt-2 border-t border-slate-900 text-sm">
-                    <span class="font-black text-slate-300 uppercase tracking-wider">${t('pedidos.form.totalComanda')}</span>
-                    <span class="text-xl font-black text-amber-400" id="label-total">$0.00</span>
+                <div class="flex justify-between items-center pt-2 border-t border-slate-200 text-sm">
+                    <span class="font-black text-slate-600 uppercase tracking-wider">${t('pedidos.form.totalComanda')}</span>
+                    <span class="text-xl font-black text-amber-600" id="label-total">$0.00</span>
                 </div>
             </div>
 
             <!-- Logística de Pago -->
-            <div class="space-y-3 bg-slate-900/40 p-4 rounded-xl border border-slate-900">
-                <p class="text-xs font-black text-red-500 uppercase tracking-widest">${t('pedidos.form.metodoPagoLogistica')}</p>
+            <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <p class="text-xs font-black text-red-600 uppercase tracking-widest">${t('pedidos.form.metodoPagoLogistica')}</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.tipoPago')}</label>
-                        <select id="tipo_pago" required class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600">
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">${t('pedidos.form.tipoPago')}</label>
+                        <select id="tipo_pago" required class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-red-500">
                             <option value="Efectivo">${t('pagos.Efectivo')}</option>
                             <option value="Transferencia">${t('pagos.Transferencia')}</option>
                         </select>
                     </div>
                     <div id="wrapper-paga-con">
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.pagaCon')}</label>
-                        <input type="number" id="paga_con" min="0" step="any" value="0" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600">
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">${t('pedidos.form.pagaCon')}</label>
+                        <input type="number" id="paga_con" min="0" step="any" value="0" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-red-500">
                     </div>
                 </div>
-                <div id="wrapper-cambio" class="flex justify-between items-center p-2 bg-slate-950/60 rounded-lg border border-slate-900 text-xs">
-                    <span class="text-slate-400">${t('pedidos.form.vueltoDomiciliario')}</span>
-                    <span class="font-bold text-amber-400 text-sm font-mono" id="label-cambio">$0.00</span>
+                <div id="wrapper-cambio" class="flex justify-between items-center p-2 bg-slate-100 rounded-lg border border-slate-200 text-xs">
+                    <span class="text-slate-500">${t('pedidos.form.vueltoDomiciliario')}</span>
+                    <span class="font-bold text-amber-600 text-sm font-mono" id="label-cambio">$0.00</span>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.observaciones')}</label>
-                    <textarea id="observaciones" rows="2" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 resize-none"></textarea>
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">${t('pedidos.form.observaciones')}</label>
+                    <textarea id="observaciones" rows="2" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-red-500 resize-none"></textarea>
                 </div>
             </div>
 
@@ -177,15 +177,15 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
         productosSeleccionados.forEach((item, index) => {
             total += item.precio * item.cantidad;
             const div = document.createElement('div');
-            div.className = 'flex justify-between items-center bg-slate-950 p-2 rounded-lg border border-slate-900 text-xs';
+            div.className = 'flex justify-between items-center bg-white p-2 rounded-lg border border-slate-200 text-xs';
             div.innerHTML = `
                 <div class="min-w-0 flex-1 pr-2">
-                    <span class="font-bold text-white block truncate uppercase tracking-tight">${item.nombre}</span>
-                    <span class="text-red-500 font-medium block">${t('pedidos.form.subtotal')} $${(item.precio * item.cantidad).toFixed(2)}</span>
+                    <span class="font-bold text-slate-800 block truncate uppercase tracking-tight">${item.nombre}</span>
+                    <span class="text-red-600 font-medium block">${t('pedidos.form.subtotal')} $${(item.precio * item.cantidad).toFixed(2)}</span>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
-                    <span class="text-amber-400 font-mono font-bold bg-slate-900 px-1.5 py-0.5 rounded">x${item.cantidad}</span>
-                    <button type="button" class="text-slate-500 hover:text-red-500 font-bold px-1 transition-colors cursor-pointer" data-index="${index}">✕</button>
+                    <span class="text-amber-700 font-mono font-bold bg-amber-50 px-1.5 py-0.5 rounded">x${item.cantidad}</span>
+                    <button type="button" class="text-slate-400 hover:text-red-500 font-bold px-1 transition-colors cursor-pointer" data-index="${index}">✕</button>
                 </div>
             `;
             div.querySelector('button').addEventListener('click', () => {
