@@ -2,6 +2,7 @@ import api from '../../services/api.js';
 import { showToast } from '../../components/Toast.js';
 import { FilaProducto } from './modules/FilaProducto.js';
 import { FormInventario } from './modules/FormInventario.js';
+import { t } from '../../i18n/i18n.js';
 
 export async function renderInventario() {
     const container = document.createElement('div');
@@ -10,8 +11,8 @@ export async function renderInventario() {
     container.innerHTML = `
         <header class="border-b border-slate-900 pb-4 flex justify-between items-center">
             <div>
-                <h1 class="text-3xl font-black tracking-tighter text-white uppercase">Auditoría de Inventario</h1>
-                <p class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">Control atómico de unidades de insumos y platos del restaurante.</p>
+                <h1 class="text-3xl font-black tracking-tighter text-white uppercase">${t('inventario.titulo')}</h1>
+                <p class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">${t('inventario.subtitulo')}</p>
             </div>
         </header>
 
@@ -21,12 +22,12 @@ export async function renderInventario() {
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="border-b border-slate-900 text-xs text-slate-400 font-black uppercase tracking-widest bg-slate-900/40">
-                            <th class="py-3 px-4">ID</th>
-                            <th class="py-3 px-4">Nombre / Plato</th>
-                            <th class="py-3 px-4">Descripción</th>
-                            <th class="py-3 px-4">Precio Base</th>
-                            <th class="py-3 px-4">Stock Disponible</th>
-                            <th class="py-3 px-4 text-right">Acción</th>
+                            <th class="py-3 px-4">${t('inventario.colId')}</th>
+                            <th class="py-3 px-4">${t('inventario.colNombre')}</th>
+                            <th class="py-3 px-4">${t('inventario.colDescripcion')}</th>
+                            <th class="py-3 px-4">${t('inventario.colPrecio')}</th>
+                            <th class="py-3 px-4">${t('inventario.colStock')}</th>
+                            <th class="py-3 px-4 text-right">${t('inventario.colAccion')}</th>
                         </tr>
                     </thead>
                     <tbody id="tabla-productos-body" class="divide-y divide-slate-900 text-sm"></tbody>
@@ -48,15 +49,15 @@ export async function renderInventario() {
             try {
                 if (id) {
                     await api.put(`/inventario/${id}`, datosProducto);
-                    showToast('Producto actualizado con éxito', 'success');
+                    showToast(t('inventario.form.toastActualizado'), 'success');
                 } else {
                     await api.post('/inventario', datosProducto);
-                    showToast('Nuevo producto guardado en catálogo', 'success');
+                    showToast(t('inventario.form.toastGuardado'), 'success');
                 }
                 compFormulario.resetearFormulario();
                 await refrescarTabla();
             } catch (error) {
-                showToast('Error al salvar el producto en la base de datos.', 'error');
+                showToast(t('inventario.form.toastErrorGuardar'), 'error');
             }
         },
         onCancelarEdicion: () => {
@@ -75,7 +76,7 @@ export async function renderInventario() {
             if (productos.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="text-center py-8 text-slate-500 text-xs uppercase font-black tracking-widest">No hay productos en inventario.</td>
+                        <td colspan="6" class="text-center py-8 text-slate-500 text-xs uppercase font-black tracking-widest">${t('inventario.sinProductos')}</td>
                     </tr>
                 `;
                 return;
@@ -93,7 +94,7 @@ export async function renderInventario() {
             });
         } catch (error) {
             console.error('Error al cargar la tabla de inventario:', error);
-            showToast('Error al cargar productos del inventario.', 'error');
+            showToast(t('inventario.toastErrorCargarTabla'), 'error');
         }
     }
 

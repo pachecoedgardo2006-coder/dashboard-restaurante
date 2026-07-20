@@ -1,0 +1,193 @@
+{
+  "app": {
+    "nombre": "House Grill 6",
+    "subtitulo": "Panel de Control",
+    "footer": "Modo Interno • Parrilla",
+    "tituloPagina": "House Grill 6 - Panel de Control Interno"
+  },
+
+  "menu": {
+    "pedidos": "Pedidos",
+    "historial": "Historial",
+    "inventario": "Inventario",
+    "estadisticas": "Estadísticas"
+  },
+
+  "general": {
+    "guardar": "Guardar",
+    "cancelar": "Cancelar",
+    "editar": "Editar",
+    "eliminar": "Eliminar",
+    "cargandoVista": "🔥 Calentando los motores de la parrilla...",
+    "errorVista": "⚠️ Error de enlace o conectividad con el servidor de comanda."
+  },
+
+  "estados": {
+    "Pendiente": "Pendiente",
+    "En preparación": "En preparación",
+    "Entregado": "Entregado",
+    "Cancelado": "Cancelado"
+  },
+
+  "pagos": {
+    "Efectivo": "Efectivo",
+    "Transferencia": "Transferencia"
+  },
+
+  "pedidos": {
+    "titulo": "Gestión de Pedidos",
+    "subtitulo": "Comandero interno y monitoreo de brasas en tiempo real.",
+    "seccionCreacion": "Creación de pedidos",
+    "seccionMonitoreo": "Monitoreo en línea (cocina)",
+    "vacio": "Parrilla vacía. No hay pedidos activos.",
+    "toastInitError": "Error al inicializar el panel de comandas.",
+    "toastGuardadoExito": "¡Pedido enviado a las brasas con éxito!",
+    "toastGuardadoErrorFallback": "Verifique insumos o red.",
+    "toastEstadoCambiado": "Pedido #{{id}} pasó a [{{estado}}]",
+    "toastEstadoError": "Error al actualizar el estado en cocina.",
+    "toastConexionError": "Error al conectar con el monitor de cocina.",
+
+    "form": {
+      "datosEntrega": "Datos de Entrega",
+      "nombreResidente": "Nombre del Residente *",
+      "torreBloque": "Torre / Bloque *",
+      "apartamento": "Apartamento *",
+      "telefono": "Teléfono de Contacto *",
+      "seleccionCombos": "Selección de Combos",
+      "seleccionarCombo": "-- Seleccionar Combo/Plato --",
+      "stock": "Stock",
+      "totalComanda": "Total Comanda:",
+      "metodoPagoLogistica": "Método de Pago y Logística",
+      "tipoPago": "Tipo de Pago *",
+      "pagaCon": "¿Con cuánto paga? *",
+      "vueltoDomiciliario": "Vuelto para Domiciliario:",
+      "observaciones": "Observaciones / Notas internas",
+      "despachar": "Despachar a la Parrilla",
+      "subtotal": "Subtotal:",
+      "toastStockSuperado": "No puedes superar el stock disponible ({{stock}} unidades)",
+      "toastMinProducto": "Debes agregar al menos un producto."
+    },
+
+    "card": {
+      "metodo": "Método:",
+      "cambio": "Cambio:",
+      "preparar": "Preparar",
+      "entregar": "Entregar",
+      "cancelar": "CANCELAR"
+    }
+  },
+
+  "historial": {
+    "titulo": "Historial de Pedidos",
+    "subtitulo": "Auditoría de comandas despachadas o canceladas en parrilla.",
+    "ordenesArchivadas": "Órdenes Archivadas",
+    "desde": "Desde",
+    "hasta": "Hasta",
+    "filtrar": "Filtrar",
+    "pedidoCount": "{{count}} PEDIDO{{plural}}",
+    "colPedido": "Pedido",
+    "colResidente": "Residente",
+    "colUbicacion": "Ubicación",
+    "colProductos": "Productos",
+    "colTotal": "Total",
+    "colPago": "Pago",
+    "colEstado": "Estado",
+    "cargando": "Cargando bitácora de parrilla...",
+    "filtrando": "Filtrando registros de carbón...",
+    "sinRegistros": "No hay registros bajo este rango.",
+    "toastFechasIncompletas": "Selecciona el rango de fechas completo.",
+    "toastFechaInvalida": "La fecha de inicio no puede ser posterior a la final.",
+    "toastErrorCarga": "Error al cargar la bitácora del historial.",
+    "errorCritico": "⚠️ Fallo crítico de comunicación con el servidor.",
+    "torre": "TORRE:",
+    "apt": "APT:",
+    "vuelto": "VUELTO:"
+  },
+
+  "inventario": {
+    "titulo": "Auditoría de Inventario",
+    "subtitulo": "Control atómico de unidades de insumos y platos del restaurante.",
+    "colId": "ID",
+    "colNombre": "Nombre / Plato",
+    "colDescripcion": "Descripción",
+    "colPrecio": "Precio Base",
+    "colStock": "Stock Disponible",
+    "colAccion": "Acción",
+    "sinProductos": "No hay productos en inventario.",
+    "modificar": "Modificar",
+    "bajo": "(¡Bajo!)",
+    "unidad": "U.",
+    "toastErrorCargarTabla": "Error al cargar productos del inventario.",
+
+    "form": {
+      "agregarTitulo": "📦 Agregar Nuevo Producto",
+      "agregarSubtitulo": "Introduce un nuevo plato al menú o ingrediente base.",
+      "modificarTitulo": "Modificar Producto",
+      "nombreCompleto": "Nombre Completo *",
+      "descripcionCorta": "Descripción corta",
+      "precio": "Precio ($) *",
+      "stockInicial": "Stock Inicial *",
+      "guardarCambios": "Guardar Cambios",
+      "toastActualizado": "Producto actualizado con éxito",
+      "toastGuardado": "Nuevo producto guardado en catálogo",
+      "toastErrorGuardar": "Error al salvar el producto en la base de datos."
+    }
+  },
+
+  "estadisticas": {
+    "titulo": "Métricas de Rendimiento",
+    "subtitulo": "Resumen financiero, logístico y residencial de House Grill 6 en tiempo real.",
+    "cargandoAnaliticas": "🔥 Encendiendo motores y compilando analíticas de la parrilla...",
+    "diagnosticosTitulo": "📊 Diagnósticos y Proporciones",
+    "diagnosticosSubtitulo": "Rotación de combos, flujos de bloques residenciales y recurrencia de consumo.",
+    "errorRender": "Hubo un error de red o de base de datos al renderizar analíticas.",
+    "sinDatos": "Sin datos críticos para reportar.",
+
+    "seccionFinanciera": {
+      "titulo": "💰 Gestión Financiera y Caja",
+      "descripcion": "Auditoría de ingresos en efectivo y capitalización de flujos de pago."
+    },
+    "seccionOperativa": {
+      "titulo": "📦 Control Operativo y Logística",
+      "descripcion": "Métricas de rendimiento de comandas y base asignada a repartidores."
+    },
+    "seccionDemanda": {
+      "titulo": "🏢 Mapeo de Demanda y Cancelaciones",
+      "descripcion": "Análisis del comportamiento del conjunto residencial e incidencias operativas."
+    },
+
+    "metric": {
+      "ingresosTotales": "Ingresos Totales (Caja)",
+      "ventasEfectivo": "Ventas en Efectivo",
+      "ventasTransferencia": "Ventas por Transferencia",
+      "ticketPromedio": "Ticket Promedio",
+      "pedidosEfectivos": "Pedidos Efectivos",
+      "cambioEnRuta": "Cambio en Ruta (Domicilios)",
+      "bloqueMayorDemanda": "Bloque de Mayor Demanda",
+      "horaPico": "Hora Pico de Ventas",
+      "ordenesCanceladas": "Órdenes Canceladas"
+    },
+
+    "graficoCombos": {
+      "titulo": "🍔 Top Combos y Caseritas",
+      "descripcion": "Platos con mayor índice de rotación en la parrilla."
+    },
+    "graficoClientes": {
+      "titulo": "👑 Clientes Frecuentes",
+      "descripcion": "Residentes con mayor frecuencia de pedidos acumulada.",
+      "etiquetaValor": "{{n}} pedidos"
+    },
+    "graficoTorres": {
+      "titulo": "🏢 Flujo de Entregas por Torres",
+      "descripcion": "Distribución geográfica del volumen de despachos.",
+      "nombreItem": "Torre / Bloque {{torre}}",
+      "etiquetaValor": "{{n}} ped."
+    },
+    "graficoStock": {
+      "titulo": "🚨 Alerta de Inventario Crítico",
+      "descripcion": "Insumos de cocina con stock crítico (igual o inferior a 10 unidades).",
+      "etiquetaValor": "{{n}} und."
+    },
+    "graficoCombosEtiqueta": "{{n}} u."
+  }
+}

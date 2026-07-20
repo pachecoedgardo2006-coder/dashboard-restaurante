@@ -1,4 +1,5 @@
 import { showToast } from './Toast.js';
+import { t } from '../i18n/i18n.js';
 
 export function FormPedido({ productosDisponibles, onGuardarPedido }) {
     const form = document.createElement('form');
@@ -12,36 +13,36 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
         form.innerHTML = `
             <!-- Datos del Residente -->
             <div class="space-y-3 bg-slate-900/40 p-4 rounded-xl border border-slate-900">
-                <p class="text-xs font-black text-red-500 uppercase tracking-widest">Datos de Entrega</p>
+                <p class="text-xs font-black text-red-500 uppercase tracking-widest">${t('pedidos.form.datosEntrega')}</p>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">Nombre del Residente *</label>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.nombreResidente')}</label>
                     <input type="text" id="cliente_nombre" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition uppercase">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">Torre / Bloque *</label>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.torreBloque')}</label>
                         <input type="text" id="torre_bloque" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition uppercase">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">Apartamento *</label>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.apartamento')}</label>
                         <input type="text" id="apartamento" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition uppercase">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">Teléfono de Contacto *</label>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.telefono')}</label>
                     <input type="tel" id="telefono" required autocomplete="off" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 transition">
                 </div>
             </div>
 
             <!-- Selector de Productos -->
             <div class="space-y-3 bg-slate-900/40 p-4 rounded-xl border border-slate-900">
-                <p class="text-xs font-black text-red-500 uppercase tracking-widest">Selección de Combos</p>
+                <p class="text-xs font-black text-red-500 uppercase tracking-widest">${t('pedidos.form.seleccionCombos')}</p>
                 <div class="flex gap-2">
                     <select id="select-producto" class="flex-1 bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600">
-                        <option value="">-- Seleccionar Combo/Plato --</option>
+                        <option value="">${t('pedidos.form.seleccionarCombo')}</option>
                         ${productosDisponibles.map(p => `
                             <option value="${p.id}" ${p.stock <= 0 ? 'disabled class="text-red-600 font-bold"' : ''}>
-                                ${p.nombre} ($${p.precio}) - Stock: ${p.stock}
+                                ${p.nombre} ($${p.precio}) - ${t('pedidos.form.stock')}: ${p.stock}
                             </option>
                         `).join('')}
                     </select>
@@ -51,40 +52,40 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
                 </div>
                 <div id="lista-items" class="space-y-2 max-h-40 overflow-y-auto custom-scrollbar"></div>
                 <div class="flex justify-between items-center pt-2 border-t border-slate-900 text-sm">
-                    <span class="font-black text-slate-300 uppercase tracking-wider">Total Comanda:</span>
+                    <span class="font-black text-slate-300 uppercase tracking-wider">${t('pedidos.form.totalComanda')}</span>
                     <span class="text-xl font-black text-amber-400" id="label-total">$0.00</span>
                 </div>
             </div>
 
             <!-- Logística de Pago -->
             <div class="space-y-3 bg-slate-900/40 p-4 rounded-xl border border-slate-900">
-                <p class="text-xs font-black text-red-500 uppercase tracking-widest">Método de Pago y Logística</p>
+                <p class="text-xs font-black text-red-500 uppercase tracking-widest">${t('pedidos.form.metodoPagoLogistica')}</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">Tipo de Pago *</label>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.tipoPago')}</label>
                         <select id="tipo_pago" required class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600">
-                            <option value="Efectivo">Efectivo</option>
-                            <option value="Transferencia">Transferencia</option>
+                            <option value="Efectivo">${t('pagos.Efectivo')}</option>
+                            <option value="Transferencia">${t('pagos.Transferencia')}</option>
                         </select>
                     </div>
                     <div id="wrapper-paga-con">
-                        <label class="block text-xs font-semibold text-slate-400 mb-1">¿Con cuánto paga? *</label>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.pagaCon')}</label>
                         <input type="number" id="paga_con" min="0" step="any" value="0" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600">
                     </div>
                 </div>
                 <div id="wrapper-cambio" class="flex justify-between items-center p-2 bg-slate-950/60 rounded-lg border border-slate-900 text-xs">
-                    <span class="text-slate-400">Vuelto para Domiciliario:</span>
+                    <span class="text-slate-400">${t('pedidos.form.vueltoDomiciliario')}</span>
                     <span class="font-bold text-amber-400 text-sm font-mono" id="label-cambio">$0.00</span>
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1">Observaciones / Notas internas</label>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">${t('pedidos.form.observaciones')}</label>
                     <textarea id="observaciones" rows="2" class="w-full bg-slate-950 border border-slate-900 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-red-600 resize-none"></textarea>
                 </div>
             </div>
 
             <!-- Botón adaptado a la forma y color del botón "¡ORDENAR!" del anuncio -->
             <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 px-4 rounded-xl shadow-lg shadow-amber-950/10 active:scale-[0.98] transition-all text-sm uppercase tracking-wider cursor-pointer">
-                Despachar a la Parrilla
+                ${t('pedidos.form.despachar')}
             </button>
         `;
 
@@ -111,7 +112,7 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
                 if (existente.cantidad < prodOriginal.stock) {
                     existente.cantidad++;
                 } else {
-                    showToast(`No puedes superar el stock disponible (${prodOriginal.stock} unidades)`, 'error');
+                    showToast(t('pedidos.form.toastStockSuperado', { stock: prodOriginal.stock }), 'error');
                 }
             } else {
                 productosSeleccionados.push({
@@ -141,7 +142,7 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             if (productosSeleccionados.length === 0) {
-                showToast('Debes agregar al menos un producto.', 'error');
+                showToast(t('pedidos.form.toastMinProducto'), 'error');
                 return;
             }
 
@@ -180,7 +181,7 @@ export function FormPedido({ productosDisponibles, onGuardarPedido }) {
             div.innerHTML = `
                 <div class="min-w-0 flex-1 pr-2">
                     <span class="font-bold text-white block truncate uppercase tracking-tight">${item.nombre}</span>
-                    <span class="text-red-500 font-medium block">Subtotal: $${(item.precio * item.cantidad).toFixed(2)}</span>
+                    <span class="text-red-500 font-medium block">${t('pedidos.form.subtotal')} $${(item.precio * item.cantidad).toFixed(2)}</span>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
                     <span class="text-amber-400 font-mono font-bold bg-slate-900 px-1.5 py-0.5 rounded">x${item.cantidad}</span>

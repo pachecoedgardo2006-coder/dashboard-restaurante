@@ -1,3 +1,5 @@
+import { t } from '../../../i18n/i18n.js';
+
 export function GraficoProgreso({ titulo, descripcion, items, deColor, aColor }) {
     const container = document.createElement('div');
     container.className = 'bg-slate-950/60 border border-slate-900 rounded-2xl p-6 shadow-xl space-y-4';
@@ -11,7 +13,7 @@ export function GraficoProgreso({ titulo, descripcion, items, deColor, aColor })
 
     const itemsContainer = container.querySelector('#items-container');
     if (!items || items.length === 0) {
-        itemsContainer.innerHTML = `<p class="text-xs text-slate-500 py-4 text-center">Sin datos críticos para reportar.</p>`;
+        itemsContainer.innerHTML = `<p class="text-xs text-slate-500 py-4 text-center">${t('estadisticas.sinDatos')}</p>`;
         return container;
     }
 
