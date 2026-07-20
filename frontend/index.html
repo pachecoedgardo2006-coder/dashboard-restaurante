@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House Grill 6 - Panel de Control Interno</title>
-
+    <title data-i18n="app.tituloPagina">House Grill 6 - Panel de Control Interno</title>
     <!-- El archivo CSS de Tailwind se procesará mediante Vite -->
     <link rel="icon" type="image/png" href="/isotipo.png">
     <link rel="stylesheet" href="/src/style.css">
@@ -65,10 +64,44 @@
                 <div class="flex items-center justify-center gap-2 text-xs text-slate-400">
                     <span class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
                     <span class="uppercase tracking-[0.25em]">Grill Station Online</span>
+                <div>
+                    <h1 class="font-black text-sm tracking-tighter text-white uppercase leading-tight" data-i18n="app.nombre">House Grill 6</h1>
+                    <p class="text-[10px] text-red-500 font-bold uppercase tracking-widest" data-i18n="app.subtitulo">Panel de Control</p>
                 </div>
                 <p class="mt-2 text-center text-[10px] text-slate-600 tracking-widest uppercase">House Grill 6 • Modo Parrilla</p>
             </div>
         </aside>
+            <!-- Navegación Conectada con tu Router hashchange -->
+            <nav class="p-4 space-y-1.5" id="sidebar-nav">
+                <button data-view="estadisticas" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-900/60 hover:text-white cursor-pointer group">
+                    <span class="text-base transition-transform group-hover:scale-110">📊</span> 
+                    <span data-i18n="menu.estadisticas">Estadísticas</span>
+                </button>
+                <button data-view="pedidos" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-900/60 hover:text-white cursor-pointer group">
+                    <span class="text-base transition-transform group-hover:scale-110">📝</span> 
+                    <span data-i18n="menu.pedidos">Pedidos</span>
+                </button>
+                <button data-view="historial" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-900/60 hover:text-white cursor-pointer group">
+                    <span class="text-base transition-transform group-hover:scale-110">⏳</span> 
+                    <span data-i18n="menu.historial">Historial</span>
+                </button>
+                <button data-view="inventario" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-sm font-semibold transition-all duration-200 text-slate-400 hover:bg-slate-900/60 hover:text-white cursor-pointer group">
+                    <span class="text-base transition-transform group-hover:scale-110">📦</span> 
+                    <span data-i18n="menu.inventario">Inventario</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Footer Sidebar -->
+        <div class="p-4 border-t border-slate-900 bg-slate-950/40 space-y-3">
+            <!-- Selector de idioma -->
+            <div id="lang-switcher" class="flex gap-1 bg-slate-900/60 border border-slate-900 rounded-lg p-1">
+                <button data-lang="es" class="lang-btn flex-1 text-[10px] font-black uppercase tracking-widest py-1.5 rounded-md transition-colors cursor-pointer">ES</button>
+                <button data-lang="en" class="lang-btn flex-1 text-[10px] font-black uppercase tracking-widest py-1.5 rounded-md transition-colors cursor-pointer">EN</button>
+            </div>
+            <p class="text-[10px] font-mono text-red-600/60 text-center uppercase tracking-widest" data-i18n="app.footer">Modo Interno • Parrilla</p>
+        </div>
+    </aside>
 
     <!-- CONTENEDOR PRINCIPAL DINÁMICO (Ajustado a bg-slate-950) -->
     <main id="app" class="flex-1 flex flex-col min-w-0 overflow-y-auto bg-slate-50 p-8 custom-scrollbar">

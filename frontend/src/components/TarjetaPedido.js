@@ -1,3 +1,5 @@
+import { t } from '../i18n/i18n.js';
+
 export function TarjetaPedido({ pedido, onCambiarEstado }) {
     const card = document.createElement('div');
     
@@ -17,7 +19,7 @@ export function TarjetaPedido({ pedido, onCambiarEstado }) {
                 <span class="text-[10px] font-black px-2 py-0.5 rounded tracking-widest uppercase ${
                     pedido.estado === 'Pendiente' ? 'bg-red-100 text-red-600 border border-red-200' : 'bg-amber-100 text-amber-700 border border-amber-200'
                 }">
-                    ${pedido.estado}
+                    ${t(`estados.${pedido.estado}`)}
                 </span>
             </div>
             <div class="min-w-0">
@@ -30,9 +32,9 @@ export function TarjetaPedido({ pedido, onCambiarEstado }) {
                 </p>
             </div>
             
-            <div class="pt-2 border-t border-slate-200 text-xs space-y-1">
-                <p class="flex justify-between"><span class="text-slate-400">Método:</span> <span class="text-slate-600 font-medium">${pedido.tipo_pago}</span></p>
-                ${pedido.tipo_pago === 'Efectivo' ? `<p class="flex justify-between"><span class="text-slate-400">Cambio:</span> <span class="text-amber-600 font-bold font-mono">$${pedido.cambio}</span></p>` : ''}
+           <div class="pt-2 border-t border-slate-200 text-xs space-y-1">
+                <p class="flex justify-between"><span class="text-slate-400">${t('pedidos.card.metodo')}</span> <span class="text-slate-600 font-medium">${t(`pagos.${pedido.tipo_pago}`)}</span></p>
+                ${pedido.tipo_pago === 'Efectivo' ? `<p class="flex justify-between"><span class="text-slate-400">${t('pedidos.card.cambio')}</span> <span class="text-amber-600 font-bold font-mono">$${pedido.cambio}</span></p>` : ''}
                 ${pedido.observaciones ? `<p class="italic text-slate-500 bg-slate-50 p-1.5 rounded mt-1 border border-slate-200 break-all">"${pedido.observaciones}"</p>` : ''}
             </div>
         </div>
@@ -40,15 +42,15 @@ export function TarjetaPedido({ pedido, onCambiarEstado }) {
         <div class="mt-4 pt-2 border-t border-slate-200 flex gap-2">
             ${pedido.estado === 'Pendiente' ? `
                 <button class="flex-1 bg-red-600 hover:bg-red-500 text-white font-black text-xs py-2 rounded-lg transition-colors cursor-pointer uppercase tracking-wider" data-action="preparar">
-                    Preparar
+                    ${t('pedidos.card.preparar')}
                 </button>
             ` : `
                 <button class="flex-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs py-2 rounded-lg transition-colors cursor-pointer uppercase tracking-wider" data-action="entregar">
-                    Entregar
+                    ${t('pedidos.card.entregar')}
                 </button>
             `}
             <button class="bg-white hover:bg-red-50 border border-slate-200 hover:border-red-300 text-slate-400 hover:text-red-500 font-bold text-xs py-2 px-3 rounded-lg transition-all cursor-pointer uppercase tracking-wider" data-action="cancelar">
-                CANCELAR
+              ${t('pedidos.card.cancelar')}   
             </button>
         </div>
     `;

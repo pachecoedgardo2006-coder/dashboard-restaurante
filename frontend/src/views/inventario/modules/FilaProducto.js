@@ -1,3 +1,5 @@
+import { t } from '../../../i18n/i18n.js';
+
 export function FilaProducto({ producto, onEditar }) {
     const tr = document.createElement('tr');
     tr.className = 'hover:bg-slate-900/40 transition-colors border-b border-slate-900 group';
@@ -13,12 +15,12 @@ export function FilaProducto({ producto, onEditar }) {
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-none text-[10px] font-black uppercase tracking-wider ${
                 esStockBajo ? 'bg-red-950 text-red-400 border border-red-800' : 'bg-slate-900 text-mostaza-caliente border border-slate-800'
             }">
-                ${producto.stock} U. ${esStockBajo ? '(¡Bajo!)' : ''}
+                ${producto.stock} ${t('inventario.unidad')} ${esStockBajo ? t('inventario.bajo') : ''}
             </span>
         </td>
         <td class="py-3 px-4 text-right">
             <button class="bg-slate-900 hover:bg-rojo-fuego text-slate-300 hover:text-white border border-slate-800 hover:border-rojo-fuego text-xs font-black py-1 px-3 rounded-none transition uppercase tracking-wider btn-edit cursor-pointer">
-                Modificar
+                ${t('inventario.modificar')}
             </button>
         </td>
     `;
