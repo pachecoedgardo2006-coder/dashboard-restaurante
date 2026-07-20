@@ -23,7 +23,7 @@ async function router() {
     try {
         // Renderizamos un esqueleto de carga temporal rápido y limpio en el DOM principal
         appContainer.innerHTML = `
-            <div class="flex items-center justify-center min-h-[50vh] bg-slate-950 text-red-500 text-xs font-black tracking-widest animate-pulse uppercase">
+            <div class="flex items-center justify-center min-h-[50vh] bg-slate-50 text-red-500 text-xs font-black tracking-widest animate-pulse uppercase">
                 🔥 Calentando los motores de la parrilla...
             </div>
         `;
