@@ -101,12 +101,6 @@ export async function renderEstadisticas() {
                 items: (data.ranking_torres || []).map(t => ({ nombre: `Torre ${t.torre_bloque}`, valor: t.total_pedidos }))
             }));
 
-           gridGraficos.appendChild(DonutChart({
-                titulo: '🏢 Distribución por Torres',
-                descripcion: 'Proporción de pedidos por torre/bloque residencial.',
-                items: (data.ranking_torres || []).map(t => ({ nombre: `Torre ${t.torre_bloque}`, valor: t.total_pedidos }))
-            }));
-
             gridGraficos.appendChild(GraficoProgreso({
                 titulo: '🚨 Alerta de Inventario Crítico',
                 descripcion: 'Insumos de cocina con stock crítico (igual o inferior a 10 unidades).',
