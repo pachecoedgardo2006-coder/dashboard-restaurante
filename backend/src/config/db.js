@@ -6,7 +6,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const dbPath = path.resolve(__dirname, '../../data/restaurante.db');
+const dbPath = path.resolve(__dirname, '../../src/data/restaurante.db');
+console.log("DB Path:", dbPath);
 
 export async function conectarDB() {
     const db = await open({

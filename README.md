@@ -1,242 +1,709 @@
-# 🪵 House Grill 6 - Dashboard de Administración para Restaurantes
+<h1 align="center">House Grill 6 🍔🔥</h1>
 
-House Grill 6 es un panel de control administrativo unificado y de alta eficiencia, diseñado exclusivamente para la gestión operativa interna de restaurantes de comidas rápidas que operan dentro de conjuntos residenciales.
+<p align="center">
+  <strong>Restaurant Management System</strong><br>
+  A modular, robust, and secure web platform designed to optimize restaurant operations by managing products, inventory, customer orders, and sales in a centralized environment.
+</p>
 
-A diferencia de las aplicaciones comerciales tradicionales, este sistema centraliza el flujo logístico, financiero y de inventario desde una única interfaz de administrador, eliminando la necesidad de infraestructura pública o perfiles de clientes externos.
+<p align="center">
+  <a href="https://git-scm.com/">
+    <img src="https://img.shields.io/badge/Monorepo-111111?style=for-the-badge">
+  </a>
+  <a href="https://www.conventionalcommits.org/">
+    <img src="https://img.shields.io/badge/Conventional_Commits-1.0.0-FE5196?style=for-the-badge&logo=conventionalcommits&logoColor=white">
+  </a>
+</p>
 
 ---
 
-## 🛠️ Stack Tecnológico
+<p align="center">
+House Grill 6 is a restaurant management platform that centralizes the administration of products, categories, inventory, and customer orders. The system provides a responsive Single Page Application (SPA) connected to a secure REST API, allowing restaurant staff to efficiently manage daily operations while maintaining data consistency and inventory control.
+</p>
 
-El proyecto está diseñado bajo una arquitectura de ****Monorepo**** limpia y desacoplada, priorizando la ligereza, la velocidad de carga y la ausencia de frameworks pesados en el frontend:
-
--   ****Frontend:**** Vite + JavaScript Vanilla (Manipulación modular estructurada del DOM mediante funciones nativas).
--   ****Estilos:**** Tailwind CSS v4 con una estética unificada ****Urbana, Agresiva e Industrial de Parrilla al Carbón**** (Fondo oscuro extremo en `bg-slate-950`, bordes y separadores duros en `slate-900` / `border-slate-900`, acentuación cromática en Rojo Fuego `#e61919` y Mostaza Caliente `#ffb700`, tipografías pesadas y masivas `font-black` / `font-extrabold`, tracking cerrado/bloqueado `letter-spacing: -0.05em`, texto estrictamente en `uppercase` y acabados rectos `rounded-none`).
--   ****HTTP Client:**** Axios (Configurado mediante una instancia centralizada orientada al prefijo `/api`).
--   ****Backend:**** Node.js + Express Framework.
--   ****Base de Datos:**** SQLite 3 (Persistencia local integrada en un archivo `.db` controlado mediante consultas nativas por promesas, garantizando cero costos de mantenimiento en la nube).
 ---
 
-## 📂 Arquitectura del Sistema
+# Table of Contents
+
+- [Badges](#badges)
+- [Key Features](#key-features)
+- [Architecture and Technologies](#architecture-and-technologies)
+- [Database Structure](#database-structure)
+- [Core System Workflows](#core-system-workflows)
+- [Project Structure](#project-structure)
+- [Installation and Setup](#installation-and-setup)
+- [Environment Variables](#environment-variables)
+- [Roadmap](#roadmap)
+- [Team](#team)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+
+---
+
+<div align="center">
+
+# Badges
+
+### Build & Tooling
+
+<p>
+
+<a href="https://vite.dev/">
+<img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
+</a>
+
+<a href="https://git-scm.com/">
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white">
+</a>
+
+<a href="https://www.notion.so/">
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
+</a>
+
+</p>
+
+### Frontend
+
+<p>
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
+<img src="https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+</a>
+
+<a href="https://vite.dev/">
+<img src="https://img.shields.io/badge/Vite-SPA-646CFF?style=for-the-badge&logo=vite&logoColor=white">
+</a>
+
+<a href="https://tailwindcss.com/">
+<img src="https://img.shields.io/badge/TailwindCSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
+</a>
+
+</p>
+
+### Backend
+
+<p>
+
+<a href="https://expressjs.com/">
+<img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white">
+</a>
+
+<a href="https://www.sqlite.org/">
+<img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white">
+</a>
+
+<a href="#">
+<img src="https://img.shields.io/badge/API-REST-25A162?style=for-the-badge">
+</a>
+
+</p>
+
+### Deployment
+
+<p>
+
+<a href="https://vercel.com/">
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">
+</a>
+
+<a href="https://github.com/">
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white">
+</a>
+
+</p>
+
+</div>
+
+---
+
+# Key Features
+
+- **Secure Authentication (RBAC):** Stateless authentication using JWT with role-based access control for **SuperAdmin**, **Admin**, **Mentor**, and **Learner** roles.
+- **Order Management:** Create, update, monitor, and complete customer orders in real time.
+- **Inventory Control:** Track stock levels and automatically update product availability after each sale.
+- **Product & Category Management:** Organize the restaurant menu by categories and manage products through an intuitive dashboard.
+- **Sales Dashboard:** Monitor restaurant activity through key metrics such as orders, products sold, and inventory status.
+- **REST API Architecture:** Modular backend exposing secure RESTful endpoints for all business operations.
+- **Axios Global Interceptor:** Automatically injects authentication tokens into every protected request.
+- **Backend Security:** Password hashing using Bcrypt and secure session management with JWT.
+- **Single Page Application (SPA):** Lightweight and responsive frontend built with Vanilla JavaScript and Vite.
+
+---
+
+# Architecture and Technologies
+
+| Layer | Technology / Dependency | Purpose |
+| :--- | :--- | :--- |
+| **Frontend** | HTML5, CSS3, JavaScript (Vanilla ES6+) | Responsive and modular Single Page Application. |
+| **Styling** | Tailwind CSS v4 | Utility-first modern styling. |
+| **HTTP Client** | Axios | HTTP client with global authentication interceptors. |
+| **Backend** | Node.js & Express.js | Modular REST API built with ECMAScript Modules. |
+| **Database** | SQLite | Lightweight relational database for restaurant operations. |
+| **Security** | `jsonwebtoken` / `bcrypt` | Authentication, authorization and password hashing. |
+| **Core Utilities** | `dotenv`, `cors`, `uuid` | Environment variables, CORS support and unique identifiers. |
+
+# Database Structure
+
+The relational database is designed to reduce redundancy while maintaining data integrity through normalized tables and foreign key relationships. This structure ensures efficient restaurant operations by managing products, inventory, orders, and users in a scalable way.
 
 ```text
-dashboard-restaurante/
-├── backend/
-│   ├── data/
-│   │   └── restaurante.db                 # Base de datos SQLite nativa (Auto-creada)
-│   ├── src/
-│   │   ├── config/
-│   │   │   └── db.js                      # Inicialización del esquema SQL y conexión por promesas
-│   │   ├── controllers/                   # Lógica de negocio y consultas CRUD atómicas
-│   │   │   ├── estadisticas.controller.js 
-│   │   │   ├── historial.controller.js    
-│   │   │   ├── inventario.controller.js   
-│   │   │   └── pedidos.controller.js      # Control operativo exclusivo de pedidos en cocina/reparto
-│   │   ├── routes/                        # Definición de endpoints de la API REST
-│   │   │   ├── estadisticas.routes.js     
-│   │   │   ├── historial.routes.js        
-│   │   │   ├── inventario.routes.js       
-│   │   │   └── pedidos.routes.js          
-│   │   └── app.js                         # Configuración de Express, middlewares globales y montaje de rutas
-│   ├── index.js                           # Punto de entrada principal y arranque del servidor HTTP
-│   ├── package.json                       # Dependencias del backend y scripts de inicio
-│   └── package-lock.json                  
-│ 
-├── frontend/
-│   ├── public/                            # Recursos estáticos globales accesibles directamente
-│   │   ├── favicon.svg                    
-│   │   └── icons.svg                      
-│   ├── src/
-│   │   ├── components/                    # Componentes modulares reutilizables del DOM
-│   │   │   ├── UI/
-│   │   │   │   └── Loader.js             
-│   │   │   ├── FormPedido.js              
-│   │   │   ├── Sidebar.js                 
-│   │   │   ├── TarjetaPedido.js           
-│   │   │   └── Toast.js      
-│   │   ├── services/                      # Configuraciones de clientes de red externos
-│   │   │   └── api.js                     # Instancia centralizada de Axios configurada con rutas relativas
-│   │   ├── views/                         # Secciones estructuradas bajo un esquema de carpetas modulares
-│   │   │   ├── estadisticas/
-│   │   │   │   ├── index.js               # Orquestador de la vista de analítica
-│   │   │   │   └── modules/
-│   │   │   │       ├── CardMetrica.js
-│   │   │   │       ├── GraficoProgreso.js
-│   │   │   │       └── SeccionAnalitica.js
-│   │   │   ├── historial/
-│   │   │   │   ├── index.js               # Orquestador del Historial (Maneja el nuevo formulario de fechas)
-│   │   │   │   └── modules/
-│   │   │   │       └── FilaHistorial.js
-│   │   │   ├── inventario/
-│   │   │   │   ├── index.js               # Orquestador de Inventario (Coordina tabla y formulario externo)
-│   │   │   │   └── modules/
-│   │   │   │       ├── FilaProducto.js
-│   │   │   │       └── FormInventario.js  
-│   │   │   └── pedidos/
-│   │   │       └── index.js               # Orquestador operativo de la cocina en vivo
-│   │   ├── main.js                        # Orquestador global de la SPA y router basado en Hash (#)
-│   │   └── style.css                      # Estilos globales y configuraciones de Tailwind CSS v4 (Dark Mystic)
-│   ├── index.html                         # Contenedor principal único para el montaje de la interfaz
-│   ├── package.json                       # Dependencias del frontend (Vite, Axios, Tailwind)
-│   └── vite.config.js                     
+                    ┌──────────────┐
+                    │     role     │
+                    └──────┬───────┘
+                           │ 1:N
+                    ┌──────▼───────┐
+                    │     user     │
+                    └──────┬───────┘
+                           │
+               ┌───────────┼────────────┐
+               │           │            │
+         ┌─────▼─────┐ ┌───▼─────┐ ┌────▼─────┐
+         │ inventory │ │ category│ │ product  │
+         └─────┬─────┘ └────┬────┘ └────┬─────┘
+               │            │           │
+               │            └─────┬─────┘
+               │                  │
+               │             1:N  │
+               │                  ▼
+               │            ┌───────────┐
+               └───────────►│order_item │◄──────────┐
+                            └────┬──────┘           │
+                                 │                  │
+                                 │ N:1              │
+                                 ▼                  │
+                            ┌───────────┐           │
+                            │   order   │───────────┘
+                            └───────────┘
+```
+
+### Main Tables
+
+- **role / user:** Provides Role-Based Access Control (RBAC) with support for **SuperAdmin**, **Admin**, **Mentor**, and **Learner** roles.
+
+- **category:** Stores the different menu categories such as burgers, drinks, desserts, and side dishes.
+
+- **product:** Contains the restaurant menu, including prices, descriptions, availability, and category assignments.
+
+- **inventory:** Tracks stock quantities for each product, allowing inventory monitoring and preventing unavailable items from being sold.
+
+- **order:** Represents customer orders, including order status, creation date, total amount, and the employee responsible.
+
+- **order_item:** Stores every product included in an order along with its quantity and subtotal.
+
+---
+
+# Core System Workflows
+
+## 1. Authentication Flow
+
+- A user logs into the system using their credentials.
+- The backend validates the credentials against the database.
+- If authentication succeeds, a JWT token containing the user's ID and role is generated.
+- The client stores the token and includes it in every protected request.
+
+---
+
+## 2. Authorization Flow (Middleware)
+
+Every request to protected endpoints is intercepted by the authentication middleware.
+
+The middleware:
+
+- Extracts the Bearer Token from the Authorization header.
+- Verifies the JWT signature and expiration.
+- Retrieves the authenticated user's information.
+- Injects the user into `req.user`.
+- Validates permissions according to the assigned role.
+
+Only authorized users can access administrative resources.
+
+---
+
+## 3. Order Management Flow
+
+```text
+[Frontend]
+       │
+       │ POST /api/orders
+       ▼
+[Authentication Middleware]
+       │
+       ▼
+[orders.controller.js]
+       │
+       ├── Validate products
+       ├── Verify inventory
+       ├── Create order
+       ├── Create order details
+       ├── Update inventory
+       └── Return response
+```
+
+The system automatically updates inventory after every successful order, ensuring stock consistency.
+
+---
+
+## 4. Inventory Management Flow
+
+```text
+Administrator
+
+        │
+
+        ▼
+
+Inventory Module
+
+        │
+
+        ▼
+
+Update Product Stock
+
+        │
+
+        ▼
+
+SQLite Database
+
+        │
+
+        ▼
+
+Dashboard Updated
+```
+
+This process guarantees that inventory information remains synchronized with restaurant operations.
+
+---
+
+# Project Structure
+
+```text
+House-Grill-6/
 │
-├── package.json                           # Configuración de scripts globales para la gestión del Monorepo
-├── package-lock.json                      
-└── README.md                              # Documentación técnica e ingeniería del sistema
-
+├── apps/
+│   ├── frontend/
+│   │   ├── public/
+│   │   ├── src/
+│   │   │   ├── assets/
+│   │   │   ├── components/
+│   │   │   ├── layouts/
+│   │   │   ├── pages/
+│   │   │   ├── router/
+│   │   │   ├── services/
+│   │   │   ├── store/
+│   │   │   ├── styles/
+│   │   │   ├── utils/
+│   │   │   └── main.js
+│   │   │
+│   │   ├── index.html
+│   │   └── package.json
+│   │
+│   └── backend/
+│       ├── src/
+│       │   ├── config/
+│       │   ├── controllers/
+│       │   ├── database/
+│       │   ├── middlewares/
+│       │   ├── models/
+│       │   ├── routes/
+│       │   ├── services/
+│       │   ├── utils/
+│       │   └── app.js
+│       │
+│       ├── package.json
+│       └── index.js
+│
+├── docs/
+│   ├── frontend/
+│   ├── backend/
+│   ├── database/
+│   ├── scrum/
+│   └── api/
+│
+├── README.md
+└── .gitignore
 ```
 
----
+The project follows a **Monorepo architecture**, separating frontend, backend, documentation, and configuration into independent modules. This structure improves maintainability, scalability, and collaborative development while keeping a clean project organization.
+# Installation and Setup
 
-## ⚙️ Módulos del Core Operativo
+## Prerequisites
 
-1.  **Estadísticas Avanzadas:** Panel analítico estructurado en 3 zonas de control (Gestión Financiera, Control Operativo/Logística, y Mapeo de Demanda) asistido por componentes gráficos basados en barras de progreso CSS nativas para el monitoreo de stock crítico y platos más vendidos.
-2.  **Gestión de Pedidos Residenciales:** Flujo modular interactivo para capturar de manera obligatoria la ubicación exacta del residente (Torre, Bloque, Apartamento, Teléfono), así como el cálculo logístico automatizado del vuelto o cambio requerido para el domiciliario según el método de pago.
-3.  **Auditoría de Inventario:** Tabla dinámica con transacciones SQL atómicas. Reduce automáticamente los insumos con cada compra confirmada y devuelve el stock al inventario de forma inmediata y automática en caso de cancelaciones para evitar la corrupción de datos.
+Before running the project, make sure you have the following tools installed:
 
----
-
-## 📝 Reglas de Diseño e Ingeniería
-
-* **Sin Frameworks Reactivos:** El frontend se rige por un ciclo de vida limpio manipulando nodos del DOM (`document.createElement`). Se limpian estrictamente los contenedores (`innerHTML = ''`) antes de nuevas instancias para evitar fugas de memoria y duplicidad de escuchadores de eventos.
-* **Persistencia Real:** Se prohíbe el uso de almacenamiento volátil del navegador (`localStorage`) para el flujo operativo; todas las operaciones interactúan directamente con la base de datos local a través de bloques `async/await` controlados.
+- Node.js (v18 or later recommended)
+- npm (included with Node.js)
+- SQLite3
+- Git
 
 ---
 
-# 📖 Manual de Instalación y Despliegue Local
+## Clone the Repository
 
-* **Proyecto:** ResiFoods (Dashboard de Administración)
-* **Arquitectura:** Monorepo (Backend: Node.js/Express | Frontend: Vite + Vanilla JS)
-* **Base de Datos:** SQLite 3 (Nativa, sin ORM)
-* **Entorno de Destino:** Windows 10 / 11
-
-Este manual detalla los pasos requeridos para clonar, configurar, compilar e instalar la aplicación en una máquina de producción (Windows) de forma limpia.
-
-### 📋 Requisitos Previos en la Máquina Destino
-
-1. **Node.js** (Versión LTS estable recomendada: v22 o superior).
-* Descargar e instalar desde el sitio oficial.
-* Verificar instalación en la terminal (CMD o PowerShell) ejecutando:
 ```bash
-node -v
-npm -v
-
+git clone https://github.com/your-organization/house-grill-6.git
+cd House-Grill-6
 ```
-
-2. Un **navegador web** moderno (Google Chrome o Microsoft Edge recomendado).
 
 ---
 
-### 🚀 Paso 1: Transferencia y Limpieza de Archivos
+## Backend Setup
 
-1. Copiar la carpeta raíz del proyecto `dashboard-restaurante/` en el disco local de la máquina destino (Ejemplo recomendado: `C:\ResiFoods`).
-2. **IMPORTANTE:** Asegurarse de **NO** copiar las carpetas `node_modules/` del backend ni del frontend, ya que se generarán limpiamente en el destino.
+1. Navigate to the backend folder:
 
----
-
-### ⚙️ Paso 2: Modificaciones y Configuraciones de Código (Producción)
-
-#### [A] Configuración del HTTP Client (Frontend)
-
-* **Ubicación:** `frontend/src/services/api.js`
-* **Acción:** La instancia centralizada de Axios debe apuntar a rutas relativas orientadas al prefijo `/api`. Asegurarse de que no apunte a un `localhost` estático con un puerto harcodeado en desarrollo.
-* **Ejemplo:**
-```javascript
-const api = axios.create({ baseURL: '/api' });
-
-```
-
-
-
-#### [B] Configuración del Servidor Express (Backend)
-
-* **Ubicación:** `backend/src/app.js`
-* **Acción:** Añadir los middlewares para servir el frontend compilado (Vite Build) de manera estática unificada. Colocar este bloque **ANTES** de definir las rutas de la API (`/api/pedidos`, `/api/inventario`, etc.).
-* **Código a integrar/verificar:**
-```javascript
-const path = require('path');
-
-// Servir archivos estáticos del build del frontend
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
-
-// Redirección de la raíz al index.html de la SPA
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
-});
-
-```
-
-
-
----
-
-### 📦 Paso 3: Instalación de Dependencias y Compilación (Build)
-
-Abrir una terminal (CMD o PowerShell) y ejecutar los siguientes comandos:
-
-1. **Compilar el Frontend** (Optimización de assets, CSS v4 y JS modular):
 ```bash
-cd C:\ResiFoods\frontend
+cd apps/backend
+```
+
+2. Install dependencies:
+
+```bash
 npm install
-npm run build
-
 ```
 
+3. Create a `.env` file inside `apps/backend` using the variables shown in the next section.
 
-> 💡 **Nota:** Esto creará la carpeta `frontend/dist/` con los archivos listos para ser servidos de manera eficiente por Express.
+4. Create the SQLite database by executing the provided SQL script.
 
+5. Start the backend server:
 
-2. **Instalar dependencias del Backend:**
 ```bash
-cd C:\ResiFoods\backend
+npm run dev
+```
+
+The API will be available at:
+
+```text
+http://localhost:3000
+```
+
+---
+
+## Frontend Setup
+
+Open a new terminal.
+
+1. Navigate to the frontend folder:
+
+```bash
+cd apps/frontend
+```
+
+2. Install dependencies:
+
+```bash
 npm install
-
 ```
 
+3. Start the development server:
 
-> 💡 **Nota:** Al ejecutar el servidor por primera vez, el script de configuración `backend/src/config/db.js` creará automáticamente el archivo de la base de datos local `backend/data/restaurante.db` y sus respectivas tablas.
+```bash
+npm run dev
+```
 
+The application will be available at:
 
+```text
+http://localhost:5173
+```
 
 ---
 
-### 🤖 Paso 4: Automatización del Arranque para el Usuario Final
+## Running the Entire Monorepo
 
-Para evitar que el administrador del local interactúe con la terminal, se creará un script ejecutable automatizado:
+From the project's root directory:
 
-1. En la raíz del proyecto (`C:\ResiFoods\`), crear un archivo de texto vacío.
-2. Renombrar el archivo a: `arrancar.bat` (asegurarse de cambiar la extensión `.txt`).
-3. Hacer clic derecho > **Editar**, y pegar el siguiente script:
-
-```batch
-@echo off
-title Servidor ResiFoods
-echo ==========================================
-echo       INICIANDO SISTEMA RESIFOODS        
-echo ==========================================
-cd C:\ResiFoods\backend
-:: Arranca el backend de forma minimizada en segundo plano
-start /min cmd /c "npm start"
-echo Esperando inicializacion de la Base de Datos...
-timeout /t 3 /nobreak > null
-echo Abriendo Dashboard de Administracion...
-:: Abre el navegador por defecto en el puerto correspondiente
-start http://localhost:3000
-exit
-
+```bash
+npm install
+npm run dev
 ```
 
-4. **Crear Acceso Directo:**
-* Clic derecho sobre `arrancar.bat` > **Enviar a** > **Escritorio (crear acceso directo)**.
-* Renombrar el acceso directo del escritorio a: `"Iniciar ResiFoods"`.
-* *(Opcional)* Cambiar el icono por el logo del restaurante en las propiedades del acceso directo.
-
-
+This command starts both the backend and frontend simultaneously using **concurrently**.
 
 ---
 
-### 💾 Paso 5: Mantenimiento y Respaldo de Datos (Backups)
+# Environment Variables
 
-Dado que la persistencia se realiza localmente en SQLite, toda la información financiera, inventario y pedidos reside en un solo archivo: `backend/data/restaurante.db`.
+## Backend (`apps/backend/.env`)
 
-* Se recomienda programar una copia automática de este archivo al finalizar la jornada hacia un almacenamiento en la nube (Google Drive, OneDrive) o una unidad USB externa para prevenir pérdidas por fallos de hardware.
+```env
+PORT=3000
+
+DB_PATH=./database/house_grill.db
+
+JWT_SECRET=your_super_secret_key
+
+JWT_EXPIRES_IN=24h
+
+CORS_ORIGIN=http://localhost:5173
+```
+
+### Variable Description
+
+| Variable | Description |
+| :--- | :--- |
+| `PORT` | Backend server port. |
+| `DB_PATH` | Path to the SQLite database file. |
+| `JWT_SECRET` | Secret key used to sign JWT tokens. |
+| `JWT_EXPIRES_IN` | Authentication token expiration time. |
+| `CORS_ORIGIN` | Allowed frontend origin. |
+
+---
+
+## Frontend (`apps/frontend/.env`)
+
+```env
+VITE_API_URL=http://localhost:3000/api
+```
+
+| Variable | Description |
+| :--- | :--- |
+| `VITE_API_URL` | Base URL of the REST API. |
+
+---
+
+# Roadmap
+
+The project development follows an incremental Scrum methodology divided into three sprints.
+
+## Sprint 1 — Planning & Foundation
+
+- Define project scope
+- Gather functional requirements
+- Design the relational database
+- Create the product backlog
+- Configure GitHub repository
+- Prepare technical documentation
+- Build low-fidelity wireframes
+
+---
+
+## Sprint 2 — Development
+
+### Backend
+
+- JWT Authentication
+- REST API
+- Product CRUD
+- Category CRUD
+- Inventory Management
+- Order Management
+- Middleware implementation
+- Global Error Handling
+
+### Frontend
+
+- Login Page
+- Dashboard
+- Product Management
+- Category Management
+- Inventory Module
+- Order Module
+- API Integration
+- Route Protection
+
+---
+
+## Sprint 3 — Testing & Deployment
+
+- Functional Testing
+- Bug Fixing
+- Code Refactoring
+- API Validation
+- Performance Improvements
+- Final Documentation
+- Deployment to Vercel
+- Final Presentation
+
+---
+
+## Future Improvements
+
+- Customer Management
+- Sales Analytics Dashboard
+- PDF Invoice Generation
+- Email Notifications
+- Mobile Responsive Improvements
+- Barcode Scanner Integration
+- Online Payment Gateway
+- Multi-Branch Restaurant Support
+- Real-Time Inventory Synchronization
+- Role Permission Management Panel
+
+---
+# Team
+
+House Grill 6 was developed following the Scrum framework, promoting collaboration, continuous feedback, and incremental software delivery.
+
+| Team Member | Scrum Role | Technical Role |
+| :--- | :--- | :--- |
+| **Member 1** | Product Owner | Backend Developer |
+| **Member 2** | Scrum Master | Frontend Developer |
+| **Member 3** | Developer | Backend Developer |
+| **Member 4** | Developer | Frontend Developer |
+| **Member 5** | Developer | Frontend Developer |
+| **Member 6** | Developer | QA & Documentation |
+
+### Scrum Roles
+
+#### Product Owner
+
+Responsible for defining the product vision, prioritizing the Product Backlog, and ensuring the project meets stakeholder requirements.
+
+#### Scrum Master
+
+Facilitates Scrum events, removes impediments, and ensures the team follows Agile best practices.
+
+#### Development Team
+
+Responsible for designing, implementing, testing, and delivering functional software increments during every sprint.
+
+---
+
+# Documentation
+
+The project documentation is organized into different modules to simplify maintenance and provide clear technical references.
+
+```text
+docs/
+│
+├── api/
+│   ├── endpoints.md
+│   ├── authentication.md
+│   └── error-handling.md
+│
+├── backend/
+│   ├── architecture.md
+│   ├── controllers.md
+│   ├── routes.md
+│   └── services.md
+│
+├── database/
+│   ├── database-design.md
+│   ├── er-diagram.png
+│   └── schema.sql
+│
+├── frontend/
+│   ├── architecture.md
+│   ├── routing.md
+│   └── components.md
+│
+└── scrum/
+    ├── product-backlog.md
+    ├── sprint-planning.md
+    ├── sprint-review.md
+    └── retrospective.md
+```
+
+### Main Documentation
+
+| Module | Description |
+| :--- | :--- |
+| **API** | REST endpoints, authentication flow, request/response examples, and error handling. |
+| **Backend** | Project architecture, controllers, routes, services, middleware, and utilities. |
+| **Frontend** | SPA architecture, routing, reusable components, services, and UI structure. |
+| **Database** | Relational model, ER diagram, normalization, and SQL schema. |
+| **Scrum** | Product Backlog, Sprint Planning, Sprint Reviews, Retrospectives, and project management artifacts. |
+
+---
+
+# Contributing
+
+We welcome contributions that improve the quality, performance, and maintainability of House Grill 6.
+
+Before contributing, please follow these guidelines.
+
+## Branch Strategy
+
+```text
+main
+│
+├── developing
+│
+├── jandy_dev
+├── dev_elianis
+├── dev_mauricio
+├── dev_moises
+├── dev_maría
+└── dev_edgardo
+```
+
+Each developer must work only on their own development branch.
+
+---
+
+## Commit Convention
+
+The project follows the **Conventional Commits** specification.
+
+Examples:
+
+```bash
+git commit -m "feat(products): add product creation endpoint"
+
+git commit -m "fix(auth): validate expired JWT"
+
+git commit -m "docs(readme): improve installation guide"
+
+git commit -m "refactor(orders): simplify inventory validation"
+```
+
+Common commit prefixes:
+
+| Prefix | Description |
+| :--- | :--- |
+| **feat** | New feature |
+| **fix** | Bug fix |
+| **docs** | Documentation changes |
+| **style** | Formatting or styling |
+| **refactor** | Code restructuring |
+| **test** | Tests |
+| **chore** | Maintenance tasks |
+
+---
+
+## Pull Requests
+
+Before opening a Pull Request, ensure that:
+
+- Your branch is synchronized with the target branch.
+- All changes have been tested.
+- No unnecessary files are included.
+- The project builds successfully.
+- Documentation has been updated if required.
+
+---
+
+## Coding Standards
+
+- Follow the existing project structure.
+- Use meaningful variable and function names.
+- Write modular and reusable code.
+- Prefer asynchronous programming using `async/await`.
+- Handle errors consistently.
+- Keep controllers lightweight by delegating business logic to services.
+- Use environment variables for sensitive information.
+- Follow REST API conventions.
+- Apply clean architecture principles whenever possible.
+
+---
+
+# License
+
+This project was developed for academic purposes as part of the **Riwi Software Development Program**.
+
+It is intended exclusively for educational use.
+
+---
+
+<div align="center">
+
+### ⭐ If you found this project useful, consider giving it a star!
+
+**House Grill 6**  
+*A modern Restaurant Management System built with JavaScript, Express.js, SQLite, and Vite.*
+
+Made with ❤️ by the **House Grill 6 Development Team**
+
+</div>
