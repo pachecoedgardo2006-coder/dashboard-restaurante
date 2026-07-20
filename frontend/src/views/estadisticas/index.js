@@ -10,7 +10,7 @@ export async function renderEstadisticas() {
 
     container.innerHTML = `
         <header class="border-b border-slate-900 pb-4">
-            <h1 class="text-2xl font-black tracking-tight text-white sm:text-3xl uppercase">Métricas de Rendimiento</h1>
+           <h1 class="text-2xl font-black tracking-tight text-[#121212] sm:text-3xl uppercase">Métricas de Rendimiento</h1>
             <p class="text-xs text-slate-400 mt-1">Resumen financiero, logístico y residencial de House Grill 6 en tiempo real.</p>
         </header>
 
