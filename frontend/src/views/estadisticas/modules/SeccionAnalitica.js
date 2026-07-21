@@ -3,7 +3,7 @@ export function SeccionAnalitica({ titulo, descripcion }) {
     section.className = 'space-y-4';
     section.innerHTML = `
         <div class="flex items-baseline gap-3 pb-3 border-b border-slate-900">
-            <h2 class="text-sm font-black text-white tracking-wider uppercase">${titulo}</h2>
+            <h2 class="text-sm font-black text-black tracking-wider uppercase">${titulo}</h2>
             <span class="flex-1 h-px bg-linear-to-r from-red-600/50 to-transparent"></span>
         </div>
         <p class="text-xs text-slate-500 -mt-2">${descripcion}</p>

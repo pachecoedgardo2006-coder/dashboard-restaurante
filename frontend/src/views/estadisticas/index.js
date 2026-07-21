@@ -95,7 +95,7 @@ export async function renderEstadisticas() {
                 deColor: 'from-slate-500', aColor: 'to-slate-400'
             }));
 
-           gridGraficos.appendChild(DonutChart({
+           gridGraficos.appendChild(GraficoProgreso({
                 titulo: '🏢 Distribución por Torres',
                 descripcion: 'Proporción de pedidos por torre/bloque residencial.',
                 items: (data.ranking_torres || []).map(t => ({ nombre: `Torre ${t.torre_bloque}`, valor: t.total_pedidos }))
